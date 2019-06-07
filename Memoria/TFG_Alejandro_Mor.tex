@@ -70,9 +70,9 @@
 % les paraules clau i el resum en els tres idiomes                            %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\keywords{password, hash, taula rainbow} % Paraules clau 
-         {password, hash, tabla del arco iris}  % Palabras clave
-         {password, hash, rainbow table}      % Key words
+\keywords{criptografia, indentificació, password, funció resum, taula rainbow} % Paraules clau 
+         {criptografía, identificación, password, función resumen, tabla del arco iris}  % Palabras clave
+         {criptography, identification, password, hash function, rainbow table}      % Key words
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                              INICI DEL DOCUMENT                             %
@@ -102,12 +102,15 @@ Access to computer systems has always been tied to the use of passwords. For sec
 \mainmatter
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                  INTRODUCCIO                                %
+%                                  INTRODUCCIÓN                               %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \chapter{Introducci\'on}
 
-El uso de funciones resumen en criptografía está basado en la complejidad de encontrar colisiones para un resumen dado. Dicha complejidad hace inviables los ataques basados en fuerza bruta, por lo que si se pretende obtener resultados satisfactorios, han de llegar necesariamente desde mejores aproximaciones. Es por ello que con el tiempo han surgido varias de estas aproximaciones capaces de mejorar los resultados de la fuerza bruta de forma significante, haciendo viable la búsqueda de colisiones para un resumen ya sabido.
+% El uso de funciones resumen en criptografía está basado en la complejidad de encontrar colisiones para un resumen dado. Dicha complejidad hace inviables los ataques basados en fuerza bruta, por lo que si se pretende obtener resultados satisfactorios, han de llegar necesariamente desde mejores aproximaciones. Es por ello que con el tiempo han surgido varias de estas aproximaciones capaces de mejorar los resultados de la fuerza bruta de forma significante, haciendo viable la búsqueda de colisiones para un resumen ya sabido.
+
+La criptografía tiene una historia muy extensa, existiendo pruebas de sus primeros usos hace 4000 años, pasando por las primeras implementaciones en los sistemas informáticos hasta llegar al momento actual. Ligado al aumento del acceso a los sistemas informáticos surgió una nueva demanda de acceso a medios de protección de información digital, lo cual sirvió como estímulo para la investigación y obtención de nuevas técnicas y métodos de mantenimiento seguro de la información almacenada en los sistemas informáticos. Existen infinidad de motivos interesantes para mantener información digital privada de forma segura, desde garantizar la privacidad y confidencialidad de cualquier tipo de datos almacenados en un ordenador hasta proporcionar métodos de 
+
 ~\\
 
 \section{Motivaci\'on}
@@ -117,19 +120,22 @@ El hecho de que las contraseñas traten de ocultarse empleando técnicas criptog
 
 \section{Objetivos}
 
-El objetivo principal de este trabajo consiste en la obtención del mayor número posible de contraseñas almacenadas en un sistema operativo. Para ello, la secuencia de pasos a realizar es la siguiente:
+%El objetivo principal de este trabajo consiste en la obtención del mayor número posible de contraseñas almacenadas en un sistema operativo. Para ello, la secuencia de pasos a realizar es la siguiente:
 
-\begin{enumerate}
+%\begin{enumerate}
 
-    \item Generación de diversas tablas del arco iris, teniendo cada una diferentes parámetros.
+%    \item Generación de diversas tablas del arco iris, teniendo cada una diferentes parámetros.
     
-    \item Generación de 1.000 resúmenes \hash~aleatorios, simulando ser las contraseñas almacenadas en el sistema operativo.
+%    \item Generación de 1.000 resúmenes \hash~aleatorios, simulando ser las contraseñas almacenadas en el sistema operativo.
     
-    \item Experimentación con las tablas sobre las contraseñas, implementando el ataque del arco iris con cada una de ellas para obtener los resultados correspondientes.
+%    \item Experimentación con las tablas sobre las contraseñas, implementando el ataque del arco iris con cada una de ellas para obtener los resultados correspondientes.
     
-    \item Interpretación de los resultados obtenidos para determinar las mejores tablas en cuanto a calidad de resultados y tamaño de tabla.
+%    \item Interpretación de los resultados obtenidos para determinar las mejores tablas en cuanto a calidad de resultados y tamaño de tabla.
     
-\end{enumerate}
+%\end{enumerate}
+
+El objetivo principal de este trabajo consiste en diseñar un método eficiente de búsqueda de colisiones para funciones resumen, con el fin de poder determinar la seguridad de dichas funciones. Para llevarlo a cabo, se implementará un sistema de búsqueda que, tomando una función \hash~y un formato específico de contraseñas, simulará un mecanismo de almacenaje de las mismas que proporcionan la entrada a un sistema operativo, estando estas contraseñas protegidas por la función resumen antes establecida, mientras durante la búsqueda se trata de adivinar el mayor número posible de contraseñas. De esta manera, dos aspectos diferentes pueden ser evaluados. En primer lugar la seguridad de la función resumen empleada, la cual quedará reflejada mediante la cantidad de contraseñas adivinadas que trataba de proteger. En segundo lugar, será posible comprobar tanto la eficiencia como la eficacia del sistema de búsqueda de colisiones, lo cual puede resultar de interés a la hora de emplear una herramienta capaz de evaluar la seguridad de una función resumen a elegir.
+
 ~\\
 
 \section{Estructura de la memoria}
@@ -304,7 +310,7 @@ Un dominio de contraseñas se puede describir como todo el rango de posibles con
 
 \begin{itemize}
 
-    \item \textbf{Dominio}: tendrán una longitud de seis caracteres, los cuales podrán ser tan sólo números. Esto conforma un dominio con un total de un millón de contraseñas, las cuales se encuentran en el rango $'000000',~\dots, '999999'$, conformando un total de un millón de contraseñas.
+    \item \textbf{Dominio}: las contraseñas elegidas tendrán una longitud exacta de seis caracteres, los cuales tan sólo podrán ser números. Esto conformará un dominio con un total de un millón de contraseñas. Dichas contraseñas se encontrarán en el rango $'000000',~\dots, '999999'$.
     
     \item \textbf{Función \hash}: la función CRC-32, la cual ya ha sido explicada anteriormente en la sección \ref{crc32}.
     
@@ -319,7 +325,7 @@ Una ventaja de el ataque del arco iris es la escalabilidad que posee, ya que la 
 
 \section{Generación de tablas del arco iris}
 
-Como se ha visto en el apartado anterior, el dominio de contraseñas a ser atacadas consta de un total de un millón de contraseñas, el cual va a pasar a ser representado por el parámetro $N$. Como también sucediera anteriormente en la sección \ref{tmto} al introducir el intercambio tiempo-memoria (TMTO), en la generación de tablas al implementar el ataque del arco iris se ha de tener en cuenta el tamaño de dichas tablas, el cual depende de el número total de contraseñas. Recuérdese que el tamaño de una tabla en el TMTO  del arco iris viene dado por el número de filas ($m$) y de columnas ($t$) que posee. Una de las mayores diferencias de este ataque respecto al TMTO de Hellman es que así como en el TMTO se hacía uso de diversas tablas de menor dimensión, en el ataque del arco iris basta con generar una sóla tabla de mayor dimensionalidad. En este caso, el tamaño de la tabla debería de cumplir:
+Como se ha visto en el apartado anterior, el dominio de contraseñas a ser atacadas consta de un total de un millón de contraseñas, el cual va a pasar a ser representado por el parámetro $N$. Como también sucediera anteriormente en la sección \ref{tmto} al introducir el intercambio tiempo-memoria (TMTO), en la generación de tablas al implementar el ataque del arco iris se ha de tener en cuenta el tamaño de dichas tablas, el cual depende de el número total de contraseñas. Recuérdese que el tamaño de una tabla en el TMTO  del arco iris viene dado por el número de filas ($m$) y de columnas ($t$) que posee. Una de las mayores diferencias de este ataque respecto al TMTO de Hellman es que así como en el TMTO se hacía uso de diversas tablas de menor dimensión, en el ataque del arco iris basta con generar una sola tabla de mayor dimensionalidad. En este caso, el tamaño de la tabla debería de cumplir:
 
 \begin{center}
     \begin{equation}
@@ -330,7 +336,7 @@ Como se ha visto en el apartado anterior, el dominio de contraseñas a ser ataca
 \end{center}
 ~\\
 
-Teniendo esto en cuenta, se procederá a generar diferentes tablas de tamaños diversos, la mayoría cumpliendo con la relación establecida en \eqref{tamaño}, aunque algunas tablas tendrán tamaños por encima o por debajo de $N$, para explorar más posibilidades y observar la eficiencia de las tablas con diferentes tamaños. Un total de 74 tamaños de tabla diferentes serán empleados, siendo los posibles valores para $m$ y $t$ los siguientes:
+Teniendo esto en cuenta, se procederá a generar diferentes tablas de tamaños diversos, la mayoría cumpliendo con la relación establecida en la \ref{tamaño}, aunque algunas tablas tendrán tamaños por encima o por debajo de $N$, para explorar más posibilidades y observar la eficiencia de las tablas con diferentes tamaños. Un total de 74 tamaños de tabla diferentes serán empleados, siendo los posibles valores para $m$ y $t$ los siguientes:
 
 \begin{itemize}
 
@@ -1095,6 +1101,11 @@ Tras todo esto, la efectividad del ataque del arco iris debería haber quedado s
     Oechslin P.
     \newblock (2003) Making a Faster Cryptanalytic Time-Memory Trade-Off,
     \newblock \textit{Boneh D. (eds) Advances in Cryptology - CRYPTO 2003}, Lecture Notes in Computer Science, vol 2729. Springer, Berlin, Germany.
+
+\bibitem{handbook}
+	J. Katz, A. J. Menezes, P. C. Van Oorschot \& S. A. Vanstone.
+	\newblock \textit{Handbook of applied cryptography},
+	\newblock (1996), CRC press.
 
 \end{thebibliography}
 \cleardoublepage
