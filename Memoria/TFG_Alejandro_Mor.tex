@@ -109,13 +109,87 @@ Access to computer systems has always been tied to the use of passwords. For sec
 
 % El uso de funciones resumen en criptografía está basado en la complejidad de encontrar colisiones para un resumen dado. Dicha complejidad hace inviables los ataques basados en fuerza bruta, por lo que si se pretende obtener resultados satisfactorios, han de llegar necesariamente desde mejores aproximaciones. Es por ello que con el tiempo han surgido varias de estas aproximaciones capaces de mejorar los resultados de la fuerza bruta de forma significante, haciendo viable la búsqueda de colisiones para un resumen ya sabido.
 
-La criptografía tiene una historia muy extensa, existiendo pruebas de sus primeros usos hace 4000 años, pasando por las primeras implementaciones en los sistemas informáticos hasta llegar al momento actual. Ligado al aumento del acceso a los sistemas informáticos surgió una nueva demanda de acceso a medios de protección de información digital, lo cual sirvió como estímulo para la investigación y obtención de nuevas técnicas y métodos de mantenimiento seguro de la información almacenada en los sistemas informáticos. Existen infinidad de motivos interesantes para mantener información digital privada de forma segura, desde garantizar la privacidad y confidencialidad de cualquier tipo de datos almacenados en un ordenador hasta proporcionar métodos de 
+\section{Criptografía, la piedra angular}
+
+\subsection{Definición}
+
+La criptografía se puede definir como el estudio de técnicas matemáticas relacionadas con el mantenimiento seguro de cualquier información\cite{handbook}. Tiene una historia muy extensa, existiendo pruebas de sus primeros usos hace 4000 años, pasando por las primeras implementaciones en los sistemas informáticos hasta llegar al momento actual. Ligado al aumento del acceso a los sistemas informáticos surgió una nueva demanda de acceso a medios de protección de información digital, lo cual sirvió como estímulo para la investigación y obtención de nuevas técnicas y métodos de mantenimiento seguro de la información almacenada en los sistemas informáticos.
+
+\subsection{Características básicas}
+
+Existen infinidad de motivos interesantes para proteger información digital privada de forma segura, pudiendo ser los más destacados los siguientes:
+
+\begin{enumerate}
+	
+	\item \textbf{Confidencialidad}: mantener la información privada oculta excepto para quienes tengan autorización para su obtención. Hoy en día, es habitual emplear algoritmos matemáticos con el fin de hacer la información ininteligible para usuarios no autorizados.
+	
+	\item \textbf{Autenticación}: sirve como método de identificación, pudiéndose aplicar tanto a entidades interesadas en información como a la propia información.
+
+	\item \textbf{Integridad de datos}: relacionado con la modificación no autorizada de información. Es necesario poseer la habilidad de detectar cualquier alteración de los datos por un usuario no autorizado si se desea garantizar la integridad de dichos datos.
+
+\end{enumerate}
+
+\section{Buscando confidencialidad: funciones resumen}
+
+Aunque existen una gran variedad de técnicas criptográficas con el objetivo en mente de garantizar los puntos anteriores, este proyecto se ha centrado mayoritariamente en la utilización de una de ellas: las funciones resumen.
+
+\subsection{Definición}
+
+También conocidas como funciones \hash, son aquellas que actúan sobre mensajes de longitud arbitraria, tomándolos como entrada y produciendo como salida una cadena de longitud fija. A dicha salida producida por una función \hash~se le denomina un resumen -o valor- \hash, también pudiendo referirse a ella simplemente como un \hash.
+
+Una función resumen que produzca como salida cadenas binarias de longitud igual a $n$, es decir, los valores \hash~resultantes siempre estarán formados por $n$ bits, será considerada como segura si la probabilidad de que un mensaje de entrada aleatorio resulte en un valor \hash~igual que otro resumen anteriormente dado es de $2^{-n}$. Esto es lo que se conoce como una colisión, lo cual ocurre cuando tomando una función resumen, sea $h$, para dos mensajes de entrada diferentes, sean $m_1$ y $m_2$, el valor \hash~resultante de ambos es el mismo, tal que $h(m_1) = h(m_2)$. También cabe la posibilidad de que, conociendo un valor resumen específico, sea $y$, se encuentre un mensaje de entrada, sea $m$, que genere como valor resumen $h(m) = y$. Generalmente, para que una función \hash~sea considerada como segura para su uso criptográfico, los dos casos anteriores deberán de ser computacionalmente inviables de llevar a cabo.
+
+Uno de los usos criptográficos más comunes para las funciones resumen tiene lugar en protocolos de integridad de información. Las implementaciones que emplean funciones \hash~con este objetivo suelen un funcionamiento común, como se puede ver a continuación:
+
+\begin{enumerate}
+
+	\item Se computa el valor \hash~de ciertos datos del sistema, cuya integridad queda protegida.
+
+	\item En cierto momento posterior, con el objetivo de verificar que los datos que se encuentran en el sistema no han sido alterados, el valor \hash~de dichos datos se computa de nuevo y es comparado con el original. En el caso de ser diferentes se puede asegurar que se ha llevado a cabo algún tipo de modificación no autorizada de los datos.
+
+\end{enumerate}
+
+\subsection{Propiedades}
+
+Las funciones resumen poseen diversas características además de las vistas en el anterior apartado, las cuales resultan de gran utilidad para su uso. Las más notables son las siguientes:
+
+\begin{itemize}
+
+	\item \textbf{Computación eficiente}: obtener un resumen \hash~para un mensaje de entrada dado se realiza rápidamente. Aunque parezca una necesidad obvia, es de vital importancia para el uso de funciones \hash~en protocolos criptográficos.
+
+    \item \textbf{Determinismo}: un mensaje de entrada dado siempre producirá la misma cadena de salida.
+
+    \item \textbf{Uniformidad}: los posibles valores \hash~de una función resumen deben de tener la misma probabilidad de ser generados.
+
+    \item \textbf{Altamente susceptibles}: dados un mensaje $m$ y su correspondiente valor \hash~$h_m$, alterar algunos bits de $m$ genera un valor \hash~$h'_m$ el cual es tan diferente a $h_m$ que no parecen estar relacionados, es decir, comparando ambos valores \hash~no es posible apreciar que provienen de mensajes muy similares.
+
+\end{itemize}
+
+\subsection{Resistencias}
+
+Existen también diferentes propiedades que sirven para determinar el nivel de seguridad de una función resumen en particular, las cuales son conocidas como las resistencias. Existen tres tipos diferentes, y dependiendo de a cuáles de ellas sea resistente una función \hash~se podrá establecer su grado de seguridad:
+
+\begin{enumerate}
+
+	\item \textbf{Pre-imagen}: conociendo un valor \hash $y$ sin conocer su mensaje de entrada original, es computacionalmente inviable encontrar un mensaje de entrada $m$ que genere $y$ como valor \hash, es decir $h(m) = y$. En este caso, el mensaje $m$ es considerado como la pre-imagen.
+ 
+	\item \textbf{Segunda pre-imagen}: conociendo un mensaje de entrada $m$, es computacionalmente inviable encontrar otro mensaje de entrada diferente $m'$ de tal forma que el valor \hash~producido por ambos mensajes sea el mismo, tal y como $h(m) = h(m')$. En este caso, el mensaje $m'$ es considerado como la segunda pre-imagen.
+
+	\item \textbf{Colisión}: Resulta computacionalmente inviable encontrar dos mensajes de entrada diferentes entre sí, $m_1$ y $m_2$, los cuales generan el mismo valor \hash, de tal forma que $h(m_1) = h(m_2)$.
+
+\end{enumerate}
+
+Cabe remarcar que en cuanto a estas resistencias, la diferencia entre la resistencia a segunda pre-imagen y a colisión se debe a que en la segunda pre-imagen, el primer mensaje ha sido interceptado por un atacante, mientras que en la colisión no se ha obtenido ningún mensaje de entrada.
 
 ~\\
 
 \section{Motivaci\'on}
 
-El hecho de que las contraseñas traten de ocultarse empleando técnicas criptográficas no ha supuesto un impedimento para su obtención no autorizada. En la mayoría de casos, se podría decir que tan sólo ha servido para retrasar lo inevitable, ya que ha sido posible implementar ataques que han conseguido hacerse con ellas, demostrando fallos de seguridad en las técnicas criptográficas empleadas. En concreto, la obtención de contraseñas para el acceso a un sistema operativo siempre ha resultado ser de mucho interés para atacantes malintencionados, debido a la magnitud de la posible recompensa una vez conseguido llevar a cabo su ataque con éxito. El ataque del arco iris aquí presentado demuestra la debilidad de algunas funciones resumen empleadas para dicha ocultación de contraseñas, así como la utilidad que puede tener realizar una implementación como la que se va a presentar.
+El hecho de que las contraseñas traten de ocultarse empleando técnicas criptográficas no ha supuesto un impedimento para su obtención no autorizada. En la mayoría de casos, se podría decir que dicha ocultación tan sólo ha servido para retrasar lo inevitable, ya que ha sido posible implementar ataques que han conseguido hacerse con ellas, demostrando fallos de seguridad en las técnicas criptográficas empleadas.
+
+En concreto, la obtención de contraseñas para el acceso a un sistema informático siempre ha resultado ser de muy elevado interés para atacantes malintencionados, debido a la magnitud de la posible recompensa una vez conseguido llevar a cabo su ataque con éxito.
+
+En este proyecto, el ataque presentado demuestra la debilidad y vulnerabilidad de algunas funciones resumen empleadas para dicha ocultación de contraseñas. Al mismo tiempo, aunque la experimentación se ha realizado en un contexto muy específico, quedará reflejada la utilidad de tener acceso a una herramienta de búsqueda de colisiones contra una función resumen, debido a que de esta forma será posible determinar la seguridad de dicha función resumen en un caso práctico.
 ~\\
 
 \section{Objetivos}
@@ -140,94 +214,69 @@ El objetivo principal de este trabajo consiste en diseñar un método eficiente 
 
 \section{Estructura de la memoria}
 
-En primer lugar se introducirá el concepto de funciones resumen o funciones \hash, su funcionamiento, aplicaciones, debilidades y fortalezas frente a este tipo de ataque. Seguidamente se presentarán las técnicas originales que con el tiempo dieron lugar al ataque del arco iris y sus primeras implementaciones. A continuación se dará una extensa explicación sobre el ataque del arco iris en sí, con todos los factores que se han de tener en cuenta a la hora de su desarrollo e implementación, seguido de la aplicación del ataque del arco iris llevada a cabo en este proyecto, la cual será presentada en detalle, indicando los factores tenidos en cuenta para ello y relacionándolos con lo anteriormente explicado. A ello le seguirá una experimentación y su posterior interpretación, para concluir cuál resulta ser la mejor aproximación. Finalmente, se realizarán las últimas conclusiones obtenidas después del desarrollo completo del trabajo.
+%En primer lugar se introducirá el concepto de funciones resumen o funciones \hash, su funcionamiento, aplicaciones, debilidades y fortalezas frente a este tipo de ataque. Seguidamente se presentarán las técnicas originales que con el tiempo dieron lugar al ataque del arco iris y sus primeras implementaciones. A continuación se dará una extensa explicación sobre el ataque del arco iris en sí, con todos los factores que se han de tener en cuenta a la hora de su desarrollo e implementación, seguido de la aplicación del ataque del arco iris llevada a cabo en este proyecto, la cual será presentada en detalle, indicando los factores tenidos en cuenta para ello y relacionándolos con lo anteriormente explicado. A ello le seguirá una experimentación y su posterior interpretación, para concluir cuál resulta ser la mejor aproximación. Finalmente, se realizarán las últimas conclusiones obtenidas después del desarrollo completo del trabajo.
+
+Habiendo establecido una base introduciendo conceptos fundamentales tanto de la criptografía como de las funciones resumen, antes de proceder a la exposición del proceso de experimentación llevado a cabo todavía es necesario pasar por los trabajos anteriores que sirvieron de inspiración para la implementación llevada a cabo en este proyecto.
+
+Una vez establecidos los trabajos previos se podrá presentar el funcionamiento del ataque implementado, y tras ello pasar a exponer en detalle la implementación desarrollada, mostrando el proceso seguido, los resultados obtenidos y realizando posteriormente un análisis de los mismos.
+
+Por último, tras haber establecido los resultados obtenidos se dará lugar a las conclusiones de todo lo visto y a un análisis de las ventajas que podría tener el uso de la implementación desarrollada, así como establecer hacia dónde se enfocaría el trabajo futuro con objetivo de mejorar lo obtenido.
 
 %\section{Notes bibliografiques} %%%%% Opcional
 
 %????? ????????????? ????????????? ????????????? ????????????? ?????????????
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                         CAPITOLS (tants com calga)                          %
+%                       CAPÍTULOS (tantos como haga falta)                    %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Buscando confidencialidad: funciones resumen}
+\chapter{Aproximaciones en la búsqueda de colisiones para funciones resumen}
 
-\section{Definición}
+El dicho popular ``hecha la ley, hecha la trampa"\,también es aplicable en el campo de la criptografía, y dentro de todas sus posibilidades, las funciones resumen no quedan exentas. Aunque desde la aparición de estas funciones se han desarrollado infinidad de ataques diferentes, cada uno basándose en diferentes propiedades, los más relevantes para este proyecto vienen dados a continuación.
 
-Las funciones resumen, también denominadas funciones \hash, son aquellas que actúan sobre mensajes de longitud arbitraria, tomándolos como entrada y produciendo como salida una cadena de longitud fija. A dicha salida producida por una función \hash~se le denomina un resumen -o valor- \hash, también pudiendo referirse a ella simplemente como un \hash.
+\section{La paradoja del cumpleaños}
 
-\section{Propiedades}
+La paradoja del cumpleaños tiene lugar en teoría de la probabilidad, y recibe su nombre del siguiente suceso. Si se toma un grupo de $p$ personas, existe una probabilidad de que dos de ellas tengan la misma fecha de nacimiento en cuanto al día y el mes, sin tener en cuenta el año. Es evidente que si se dispone de 367 personas, existe un 100\% de probabilidad de que al menos dos de ellas coincidan en este aspecto, ya que existen un total de 366 fechas de nacimiento diferente, incluyendo el 29 de febrero. La paradoja del cumpleaños toma forma cuando se dispone de un número menor de personas, ya que con tan sólo 70 personas, la probabilidad de que dos de ellas tengan el mismo cumpleaños asciendo hasta el 99.9\%, mientras que con únicamente 23 personas existe una probabilidad del 50\% de que tenga lugar esta ocurrencia, como puede observarse en \cite{birthday}.
 
-Una de las principales características de los valores \hash~producidos por una función resumen es que, al ser de longitud fija, no suelen ser únicos para cada mensaje de entrada, por lo cual suelen existir colisiones dentro de una misma función \hash. Una colisión se produce cuando para dos mensajes distintos, sean $m_1$ y $m_2$, el valor \hash~de ambos es el mismo. Para una función \hash~que produzca como salida cadenas binarias de longitud $n$, de acuerdo con una distribución uniforme, existen un total de $2^n$ valores \hash~diferentes, por lo cual la probabilidad de que dos mensajes colisionen es igual a $\frac{1}{2^n}$.
+Extrapolando la paradoja del cumpleaños a las funciones \hash, puede tomarse como ejemplo una función $h$ que genere resúmenes con una longitud de $n$ bits. En este caso, el número total de valores \hash~diferentes que pueden obtenerse mediante $h$ es de $2^n$. Sabiendo esto, si se pretendiera adivinar un valor \hash~aleatorio de $h$, sería necesario llevar a cabo $\mathcal{O}(2^n)$ operaciones, considerando la obtención de un resumen \hash~como una operación. Debido a la paradoja del cumpleaños, normalmente no va a ser necesario realizar tantos pasos, ya que tras realizar $\mathcal{O}(2^{\frac{n}{2}})$ pasos muy probablemente se habrá obtenido el valor deseado \cite{handbook}.
 
-En su aplicación a la criptografía, las funciones resumen son consideradas probablemente seguras cuando es inviable obtener una colisión para un \hash~conocido. Es decir, si un atacante obtiene un \hash, sea $h$, no le es posible obtener un mensaje $m$ que produzca el mismo valor \hash~$h$ de manera eficiente. En este caso, la inviabilidad se define como la imposibilidad de obtener una colisión en menor tiempo de lo que lo haría un ataque de fuerza bruta. Siguiendo esta lógica, cualquier función \hash~para la cual exista una forma eficiente de obtener colisiones (es decir, más rápida que la fuerza bruta) será considerada insegura o rota.
+De esta manera surgieron los ataques del cumpleaños, basados en la paradoja homónima. Este tipo de ataques a funciones \hash~tan sólo tienen en cuenta el número de bits que poseen los valores \hash~y el tiempo empleado en la obtención de uno de estos valores.
 
-Algunas otras características importantes de las funciones \hash~son las siguientes:
+\subsection{El algoritmo de Yuval aplicado al ataque del cumpleaños}
 
-\begin{itemize}
+Una de las implementaciones más populares del ataque del cumpleaños vino dada por Yuval, consiguiendo con éxito ser capaz de encontrar colisiones en las funciones \hash~de aquel momento. La forma de llevar a cabo este ataque contra un sistema de firma electrónica es el siguiente:
 
-    \item \textbf{Computación eficiente}: obtener un resumen \hash~para un mensaje de entrada dado se realiza rápidamente. Aunque parezca una necesidad obvia, es de vital importancia para el uso de funciones \hash~en protocolos criptográficos.
-    
-    \item \textbf{Determinismo}: un mensaje de entrada dado siempre producirá la misma cadena de salida.
-    
-    \item \textbf{Uniformidad}: los posibles valores \hash~de una función resumen deben de tener la misma probabilidad de ser generados.
-    
-    \item \textbf{Altamente susceptibles}: dados un mensaje $m$ y su correspondiente valor \hash~$h_m$, alterar algunos bits de $m$ genera un valor \hash~$h'_m$ el cual es tan diferente a $h_m$ que no parecen estar relacionados, es decir, comparando ambos valores \hash~no es posible apreciar que provienen de mensajes muy similares.
-    
-\end{itemize}
+\textit{\textbf{ENTRADA}}: mensaje legítimo $m_1$, mensaje fraudulento $m_2$, función \hash~$h$ que genera resúmenes de $n$ bits de longitud.
+\\
 
-A la hora de determinar el nivel de seguridad correspondiente a una función \hash, es suficiente con determinar si dicha función es resistente a los siguientes tipos de ataques:
+\textit{\textbf{SALIDA}}: $m_1',\, m_2'$ resultantes de aplicar modificaciones menores a $m_1,\, m_2$, tal que $h(m_1') = h(m_2')$ (de esta forma la firma funcionaría tanto con $m_1'$ como con $m_2'$).
 
 \begin{enumerate}
 
-    \item \textbf{Pre-imagen}: Encontrado un valor \hash~$h$, es inviable encontrar el mensaje $m$ del cual ha sido generado.
-    
-    \item \textbf{Segunda pre-imagen}: Dado un mensaje de entrada $m$, es inviable averiguar otro mensaje de entrada diferente $m'$ de tal forma que el valor \hash~producido por ambos mensajes sea el mismo.
-    
-    \item \textbf{Colisión}: Resulta inviable encontrar dos mensajes diferentes, $m_1$ y $m_2$, los cuales generan el mismo valor \hash.
-    
+	\item Generar $t = 2^{\frac{n}{2}}$ mensajes fraudulentos $m_1'$, resultados de aplicar modificaciones menores de $m_1$.
+
+	\item Obtener el valor \hash~de cada $m_1'$ y guardarlo junto con su mensaje originario, para poder obtener el mensaje cuando se busque un valor \hash.
+
+	\item Generar mensajes fraudulentos $m_2'$ mediante modificaciones menores de $m_2$, cada vez obteniendo el valor \hash~correspondiente y comprobando si coincide con alguno de los valores \hash~de cualquiera de los $m_1'$, deteniendo en proceso una vez se encuentre tal coincidencia.
+
 \end{enumerate}
 
-Cabe remarcar que en cuanto a estas resistencias, la diferencia entre la resistencia a segunda pre-imagen y a colisión se debe a que en la segunda pre-imagen, el primer mensaje ha sido interceptado por un atacante, mientras que en la colisión no se ha obtenido ningún mensaje de entrada.
-~\\
+Este ataque se ejecuta en un tiempo $\mathcal{O}(2^{\frac{n}{2}})$, y llegó a plantear un serio problema para algunos métodos de firma electrónica de la época, ya que permitía usurpar la identidad de cualquier usuario de un sistema de firma electrónica vulnerable.
 
-\section{Contramedidas de una función \hash~para inutilizar el ataque del arco iris} \label{salt}
+\section{\textit{Time-memory trade-off}} \label{tmto}
 
-Aunque el ataque del arco iris tiene una efectividad muy alta cuando se implementa de la forma correcta, existen escenarios en los cuales resulta inviable implementar el ataque o directamente imposible:
+En julio de 1980 era publicado por Martin E. Hellman el primer artículo introduciendo el concepto del intercambio tiempo-memoria \cite{hellman}(dicho intercambio será referido a partir de ahora como TMTO). En dicho artículo, Hellman indica como el TMTO se puede aplicar con el objetivo de obtener contraseñas de forma no autorizada, atacando una función resumen. Para este fin emplea estructuras de datos en forma de tablas, que sirven como piedra angular para el desarrollo de este tipo de ataques criptográficos.
 
-\begin{itemize}
+\subsection{Parámetros a tener en cuenta}
 
-    \item \textbf{\textit{Salting}}: la técnica conocida como \textit{salting} consiste en añadir una cadena aleatoria no secreta (\textit{salt}) a la contraseña antes de ser resumida o directamente al valor \hash resultante. Por ejemplo, si se partiera con la contraseña $p$, el \textit{salt} $s$ y la operación de concatenación $+$,~~sería posible obtener como valores \hash~ tanto $h = HASH(p+s)$ como $h = HASH(p)+s$. Para llevar a cabo el ataque del arco iris con éxito frente a funciones \hash~que hacen uso de esta técnica es necesario generar tablas del arco iris para cada \textit{salt} posible, lo cual para tamaños de \textit{salt} pequeños no supone un problema serio, pero en cuanto se alcanza cierto tamaño de \textit{salt} resulta inviable implementar el ataque debido a la enorme cantidad de tablas necesarias.
-    
-    \item \textbf{Estiramiento}: esta técnica hace uso del \textit{salting}, concatenándolo a la contraseña antes de generar el valor \hash~correspondiente. Tras obtener dicho \hash~se repite el mismo proceso un número de veces determinado, esta vez concatenando el \textit{salt} al valor \hash~antes obtenido. De esta forma, además de requerir tablas del arco iris para cada \textit{salt} posible, las tablas han de replicar el bucle de estiramiento, lo cual como os fácil observar puede resultar en la inviabilidad del ataque.
-    
-    % \item \textbf{Caracteres desconocidos}: aunque parezca simple, si un ataque del arco iris se implementa sobre contraseñas que contienen caracteres que no aparecen en ninguna de sus tablas el resultado no será satisfactorio
-    
-\end{itemize}
-~\\
+Para el correcto desarrollo del método ideado por Hellman, son necesarios  los siguientes parámetros:
 
-\section{Función atacada: CRC-32} \label{crc32}
-
-Para este proyecto se ha escogido atacar \hashes~de contraseñas generados utilizando la función \hash~CRC-32. Las siglas CRC provienen de \textit{cyclic redundancy check}, o lo que es lo mismo verificación por redundancia cíclica, mientras que el número 32 indica que las cadenas de salida resultantes tienen una longitud fija de 32 bits. Esta función pertenece a la familia de las funciones CRC, el uso de las cuales es bastante popular debido a su fácil implementación y rapidez de computación, entre otras cosas.
-
-Cabe destacar que son de sobra conocidas las debilidades que presenta esta función \hash~a la hora de ocultar contraseñas frente a ataques criptográficos como el ataque del arco iris. De tal forma, se presupone que se obtendrán resultados satisfactorios al implementar el ataque frente a esta función, lo cual servirá para representar una implementación base, la cual es perfectamente escalable, por ejemplo eligiendo atacar una función \hash~diferente con mayor longitud de cadenas como la función MD5.
-
-\chapter{Antecesores al ataque del arco iris}
-
-Martin E. Hellman \cite{hellman} introdujo por primera vez el concepto del \textit{time-memory trade-off} (TMTO), o intercambio tiempo-memoria. Aunque esto supuso una mejora mayúscula en comparación a los ataques por fuerza bruta, él mismo admitía en su artículo que había espacio para mejorar todavía más. Poco después Rivest \cite{rivest} consiguió hacer realidad las expectativas de Hellman mediante el uso de puntos distinguidos. Aunque investigando la bibliografía se pueden encontrar más artículos que suponen mejoras y nuevos métodos, estas dos aproximaciones serán consideradas como las más importantes antes de llegar al ataque del arco iris.
-~\\
-
-\section{Primera aproximación: \textit{time-memory trade-off}} \label{tmto}
-
-En julio de 1980 era publicado por Martin E. Hellman el primer artículo introduciendo el concepto del intercambio tiempo-memoria (dicho intercambio será referido a partir de ahora como TMTO). En dicho artículo, Hellman indica como el TMTO se puede aplicar con el mismo objetivo que en este proyecto: obtener contraseñas de forma no autorizada. Para este fin emplea estructuras de datos en forma de tablas, que, aunque no las llame como tal, bien podrían ser consideradas una primera aproximación de las tablas del arco iris empleadas en el ataque homónimo. 
-
-Para ello, su método emplea los siguientes parámetros:
 \begin{itemize}
 
     \item $P$: conjunto finito de posibles contraseñas.
     
     \item $C$: función \hash~que transforma contraseñas de $P$ en valores \hash.
-    %
+    
     %\item $K$: conjunto finito de claves empleadas en la generación de valores \hash.
     
     \item $R$: función de reconstrucción que transforma \hashes~obtenidos con $C$ en posibles contraseñas de $P$.
@@ -235,9 +284,12 @@ Para ello, su método emplea los siguientes parámetros:
     \item $m$: número de filas de la tabla.
     
     \item $t$: número de columnas de la tabla.
+
 \end{itemize}
 
-Teniendo en cuenta todos estos parámetros, para formar una tabla de dimensiones $m \times t$, se realizará el mismo procedimiento para cada fila $i$ en el rango $1,~\dots, m$. Se comenzará tomando una contraseña inicial en $P$, denominada $p_{i_0}$, de la cual será generado un valor \hash, el cual será reconstruido aplicándole la función $R$. Una vez hecho esto, se habrá obtenido una nueva contraseña $p_{i_1}$, diferente a la anterior por requerimientos de la función de reconstrucción $R$. Este proceso será repetido un total de $t$ veces en cada fila, generando por último el valor \hash~correspondiente a la última contraseña ($p_{i_m}$) obtenida por $R$, llegando a obtener al final la tabla indicada de $m$ filas y $t$ columnas. Si se denomina $f$ al proceso de aplicar a una contraseña una función \hash~seguida de una función de reconstrucción, una representación visual de la generación de la tabla podría ser el siguiente:\\
+\subsection{Generación de una tabla}
+
+Teniendo en cuenta todos estos parámetros, para formar una tabla de dimensiones $m \times t$, se realizará el mismo procedimiento para cada fila $i$ en el rango $1,~\dots, m$. Se comenzará tomando una contraseña inicial del conjunto $P$, denominada $p_{i_0}$, de la cual será generado su valor \hash, el cual será reconstruido aplicándole la función $R$. Una vez hecho esto, se habrá obtenido una nueva contraseña $p_{i_1}$, diferente a la anterior por requerimientos de la función de reconstrucción $R$. Este proceso será repetido un total de $t$ veces en cada fila, generando por último el valor \hash~correspondiente a la última contraseña ($p_{i_m}$) obtenida por $R$, llegando a obtener al final la tabla indicada de $m$ filas y $t$ columnas. Si se denomina $f$ al proceso de aplicar a una contraseña una función \hash~seguida de una función de reconstrucción, una representación visual de la generación de la tabla podría ser el siguiente:\\
 
 % \begin{center}
 %     $p_{1_0}~~ \xrightarrow{~f~}~~ p_{1_1}~~ \xrightarrow{~f~}~~ \dots~~ \xrightarrow{~f~}~~ p_{1_t}~~ \xrightarrow{~C~}~~ h_{1_t}$ \\
@@ -258,13 +310,15 @@ Teniendo en cuenta todos estos parámetros, para formar una tabla de dimensiones
 \end{figure}
 ~\\
 
-Una vez finalizado el proceso, no se almacenará la tabla en su totalidad, sino que tan sólo se almacenan la primera y última entradas de cada fila, formando una tupla. De tal forma, tomando el ejemplo anterior, se almacenarían las tuplas \{$p_{1_0}, h_{1_t}$\}, \{$p_{2_0}, h_{2_t}$\}, \{$p_{3_0}, h_{3_t}$\}, $~\dots$, \{$p_{m_0}, h_{m_t}$\}, con el objetivo de ahorrar espacio en memoria.
+Una vez finalizado el proceso, no se almacenará la tabla en su totalidad, sino que tan sólo serán almacenadas la primera y última entradas de cada fila, formando una tupla. De tal forma, tomando el ejemplo anterior, se almacenarían las tuplas \{$p_{1_0}, h_{1_t}$\}, \{$p_{2_0}, h_{2_t}$\}, \{$p_{3_0}, h_{3_t}$\}, $~\dots$, \{$p_{m_0}, h_{m_t}$\}. Este almacenamiento se hace con el objetivo de ahorrar espacio en memoria.
 
-A la hora de tratar de obtener contraseñas se realizará el siguiente procedimiento. Habiendo obtenido un \hash~almacenado en el sistema, denominado $h$, el primer paso será compararlo con los \hashes~ en las últimas columnas de la tabla, tras lo cual se pueden dar dos posibles situaciones, dependiendo de si $h$ colisiona con alguna de las últimas columnas:
+\subsection{Empleando tablas para la búsqueda de colisiones}
+
+A la hora de tratar de averiguar colisiones para la función \hash~atacada, con el objetivo de obtener una contraseña de forma ilegítima, se realizará el siguiente procedimiento. Habiendo obtenido un \hash~almacenado en el sistema, denominado $h$, el primer paso será compararlo con los \hashes~encontrados en las últimas columnas de la tabla, tras lo cual se pueden dar dos posibles situaciones, dependiendo de si $h$ colisiona con alguna de las últimas columnas:
 
 \begin{itemize}
 
-    \item \textbf{$h$ colisiona}: este caso puede darse si la contraseña correspondiente a $h$ se encuentra en la columna anterior de la tabla, o puede resultar en una falsa alarma. En ambos casos,como se sabe en qué fila ha aparecido $h$, se tomará su punto de inicio y desde él se repetirá el proceso de generación de la tabla, hasta llegar a la columna anterior a $h$, para la cual habrá de comprobarse si permite el acceso al sistema.
+    \item \textbf{$h$ colisiona}: este caso puede darse si la contraseña correspondiente a $h$ se encuentra en la columna anterior de la tabla, o puede resultar en una falsa alarma. En ambos casos, como es conocida la fila en que ha aparecido $h$, se tomará su punto de inicio y desde él se repetirá el proceso de generación de la tabla, hasta llegar a la columna anterior a $h$, para la cual habrá de comprobarse si permite el acceso al sistema.
     \begin{itemize}
     
         \item \textbf{Acceso permitido}: efectivamente, se ha obtenido con éxito una de las contraseñas almacenadas en el sistema.
@@ -279,30 +333,79 @@ A la hora de tratar de obtener contraseñas se realizará el siguiente procedimi
 
 Puede ocurrir también que durante el proceso de generación de la tabla se generen colisiones el las últimas columnas, es decir, que dos o más de las últimas columnas acaben teniendo el mismo valor \hash. Esto contribuye a reducir el número de filas únicas de la tabla, aunque si se consigue mantener por debajo de un porcentaje pequeño no debería de tener un impacto negativo significante en la mejora brindada por el TMTO.
 
-Hablando del cual, el intercambio tiempo-memoria que tiene lugar aquí depende de los valores asignados tanto a $m$ como a $t$. Una posible forma de pensar en dichos valores es tener en cuenta el número posible de \hashes~distintos que puede generar la función resumen atacada. Sea este número denominado $N$, una aproximación lógica sería que $m$ y $t$ cumplan la siguiente relación: $m \times t = N$. Dentro de esta relación, podrían darse los casos extremos de $m = N, t = 1$, o el contrario, $m = 1, t = N$, aunque dichos casos estarían implementando un ataque más parecido a la fuerza bruta en lugar de hacer uso del TMTO. En la época en la que Hellman ideó esta aproximación, en lugar de emplear tan sólo una tabla con dimensiones $m \times t = N$ su método hacía uso de diversas tablas de menor dimensionalidad para reducir las limitaciones establecidas por la memoria del sistema.
+Hablando del cual, el intercambio tiempo-memoria que tiene lugar aquí depende de los valores asignados tanto a $m$ como a $t$. Una posible forma de pensar en dichos valores es tener en cuenta el número posible de \hashes~distintos que puede generar la función resumen atacada. Sea este número denominado $N$, una aproximación lógica trataría de asegurar que $m$ y $t$ cumplan la siguiente relación: $m \times t = N$. Dentro de esta relación, podrían darse los casos extremos de $m = N, t = 1$, o el contrario, $m = 1, t = N$, aunque dichos casos estarían implementando un ataque más parecido a la fuerza bruta en lugar de hacer uso del TMTO. En la época en la que Hellman ideó esta aproximación, en lugar de emplear tan sólo una tabla con dimensiones $m \times t = N$ su método hacía uso de diversas tablas de menor dimensionalidad para reducir las limitaciones establecidas por la memoria del sistema.
 
-En el intercambio en este caso, un mayor número de filas respecto al número de columnas supondrá un menor tiempo de computación para la generación de la tabla, pero requerirá más espacio en memoria para almacenar los resultados, ya que se obtendrán más tuplas con la primera y última entrada de cada fila. En cambio, aumentar el valor de $t$ mientras se reduce el de $m$ resultará en una reducción en el espacio requerido en memoria, aunque el tiempo de computación necesario para obtener la tabla será mayor, ya que para cada fila se repetirá en procedimiento visto en la Figura \ref{tabla} más veces.
-~\\
+En el intercambio en este caso, un mayor número de filas respecto al número de columnas supondrá un menor tiempo de computación para la generación de la tabla, pero requerirá a su vez más espacio en memoria para almacenar los resultados, ya que se obtendrán más tuplas con la primera y última entrada de cada fila. En cambio, aumentar el valor de $t$ mientras se reduce el de $m$ resultará en una reducción en el espacio requerido en memoria, aunque el tiempo de computación necesario para obtener la tabla será mayor, ya que para cada fila se repetirá en procedimiento visto en la Figura \ref{tabla} un mayor número de veces. 
+
+\chapter{El ataque del arco iris} \label{ataque}
+
+\section{Desarrollo y relación con trabajos anteriores}
+
+Hasta ahora se han visto diferentes aproximaciones cuyo objetivo recaía en la obtención de colisiones para una función resumen, para así poder tener acceso no autorizado a aquello que dicha función trataba de proteger. Aunque dichas aproximaciones no son empleadas hoy en día, sirvieron como base para el desarrollo del ataque del arco iris, el cual consiguió mejorar las prestaciones de todo lo visto anteriormente, mediante el uso de una estructura de datos que hace uso de los mismos principios que aquellos vistos en la Figura \ref{tabla}, expandiendo sobre ellos y resultando en las conocidas como tablas del arco iris.
+
+En 2003, Philippe Oechslin publicó el primer artículo en el cual aparecía el concepto de la tabla del arco iris \cite{rainbow}. Dicha tabla consiste en una implementación más compleja del intercambio tiempo-memoria de Hellman, el cual se ha visto en la sección \ref{tmto}. Parte de la mayor complejidad se debe al aumento del tamaño de la tabla, ya que las limitaciones en cuanto a la memoria para almacenar las tablas que se daban lugar cuando Hellman publicó su artículo no ocurren en este caso.
+
+La clave de este ataque reside en el uso de sus tablas, las cuales son capaces de representar mucha más información que las tablas que emplea Hellman. De hecho, el ataque llevado a cabo por Hellman requiere hacer uso de varias de sus tablas, mientras que si se pretende obtener los mismos resultados mediante tablas del arco iris únicamente haría falta emplear una de estas tablas. Las dimensiones de las tablas del arco iris dependerán, en principio, del número total de contraseñas diferentes a ser atacadas que existan, lo cual dependerá de las características de dichas contraseñas. Diferentes factores como el número de caracteres de las contraseñas o el uso o no de diferentes dominios de caracteres (letras minúsculas y/o mayúsculas, números, símbolos$\, \dots$) determinará las dimensiones de las tablas del arco iris. 
+
+El método de construcción de las tablas del arco iris, como ya se ha dicho, sigue los mismos pasos de las tablas de Hellman, tomando una contraseñas inicial diferente para cada fila de la tabla, generando su valor \hash~y empleando la función de reconstrucción para obtener una nueva contraseña, así tantas veces como columnas tenga la tabla y para tantas filas como se requiera. Una vez generada una tabla del arco iris, será almacenada en memoria para su posterior uso. Dicho uso se llevará a cabo al igual que con las tablas de Hellman. La mejora en los resultados en este aspecto viene proporcionada por el aumento en las dimensiones de la tabla, aunque esto no es lo único que difiere en las tablas del arco iris.
+
+%Combinar diferentes funciones de reconstrucción
+La característica más distinguida de las tablas del arco iris, y por la cual reciben su nombre, reside en el uso que son capaces de hacer de la función de reconstrucción, ya que es posible emplear diferentes funciones de reconstrucción en la misma tabla. Aunque esto no parezca tener demasiada importancia en un principio, en la práctica resulta ser un aspecto fundamental a la hora de obtener resultados de calidad, ya que estos variarán dependiendo de la función o funciones de reconstrucción empleadas. De esta manera, el foco de mayor importancia en cuanto a la construcción de tablas del arco iris se refiere pasa a ser la elección apropiada de una o varias funciones de reconstrucción, siendo el objetivo principal en este aspecto averiguar la configuración idónea de funciones de reconstrucción. 
+
+Otra de las ventajas del ataque del arco iris es su escalabilidad, ya que una correcta implementación del mismo puede servir para atacar diferentes funciones \hash~y dominios de contraseñas. Las diferencias corresponderán únicamente con los tiempos empleado en la generación de las tablas y la búsqueda de contraseñas. A su vez, cabe la posibilidad de requerir ajustar las funciones de reconstrucción a las diferentes funciones \hash, aunque siempre dependerá del objetivo que se pretenda conseguir al buscar colisiones de la función correspondiente.
 
 \section{Puntos distinguidos}
 
-Tomando el método de Hellman \cite{hellman} mediante el uso del TMTO, Rivest \cite{rivest} implementó una mejora que reducía el tiempo de búsqueda a la hora de tratar de obtener contraseñas. Dicha mejora está basada en la implementación de puntos distinguidos en la tabla.
+Dentro de las posibilidades que ofrece el ataque del arco iris en sí, existen también diferentes formas de llevarlo a cabo, siendo una variante muy popular el método de los puntos de control o puntos distinguidos, ideado por Rivest \cite{rivest}.
 
-Los puntos distinguidos de Rivest se dan al establecer ciertas condiciones para las últimas entradas de la tabla, es decir, los elementos contenidos en las últimas columnas. Dichas condiciones quedan a la elección del atacante, pudiendo ser empezar o terminar con un número determinado de ceros o unos, por ejemplo. Esta aproximación tiene un matiz a la hora de generar la tabla, y es que como las últimas entradas deben cumplir las condiciones establecidas, ahora en lugar de obtener dichas entradas después de $t$ pasos, se habrá de continuar hasta generar una entrada que satisfaga dichas condiciones. Por otra parte, la gran ventaja que brinda este método es una reducción significativa en cuanto al tiempo de búsqueda en las tablas, ya que el número de posibles colisiones de últimas entradas de la tabla se ve notablemente reducido, lo cual resulta también en un mayor rango de contraseñas cubierto por la tabla, aumentando la probabilidad de éxito de la misma.
+Tomando el método de Hellman \cite{hellman} mediante el uso del TMTO, Rivest implementó una mejora que reducía el tiempo de búsqueda a la hora de tratar de obtener contraseñas. Dicha mejora está basada en la implementación de puntos distinguidos en la tabla.
 
-% \chapter{La tabla del arco iris}
+Los puntos distinguidos de Rivest se dan al establecer ciertas condiciones para las últimas entradas de la tabla, es decir, los elementos contenidos en las últimas columnas. Dichas condiciones quedan a la elección del atacante, pudiendo ser empezar o terminar con un número determinado de ceros o unos, por ejemplo. Esta aproximación tiene un matiz a la hora de generar la tabla, y es que como las últimas entradas deben cumplir las condiciones establecidas, ahora en lugar de obtener dichas entradas después de $t$ pasos, se habrá de continuar hasta generar una entrada que satisfaga dichas condiciones, lo cual puede darse en una entrada cercana a la inicial o puede tardar más de lo previsto en ocurrir. Por otra parte, la gran ventaja que brinda este método es una reducción significativa en cuanto al tiempo de búsqueda en las tablas, ya que el número de posibles colisiones de últimas entradas de la tabla se ve notablemente reducido, lo cual resulta también en un mayor rango de contraseñas cubierto por la tabla, aumentando la probabilidad de éxito de la misma.
 
-% La primera implementación de una tabla del arco iris vino dada por Philippe Oechslin \cite{rainbow} en el año 2003.
+\section{Contramedidas de una función \hash~para inutilizar el ataque del arco iris} \label{salt}
 
-% \section{Relación con trabajos anteriores}
+Aunque el ataque del arco iris tiene una efectividad muy alta cuando se implementa de la forma correcta, existen escenarios en los cuales resulta inviable implementar el ataque o directamente imposible, teniendo lugar mayormente cuando la función resumen la cual se pretende atacar hace uso de los siguientes métodos:
 
-% \section{Parámetros}
+\begin{itemize}
 
-% \section{Eficiencia}
+    \item \textbf{\textit{Salting}}: la técnica conocida como \textit{salting} consiste en añadir una cadena aleatoria conocida como \textit{salt}, la cual no es secreta, a la contraseña antes de ser resumida, o directamente al valor \hash~resultante. Por ejemplo, si se partiera con la contraseña $p$, el \textit{salt} $s$ y la operación de concatenación $+$,~~sería posible obtener como valores \hash~ tanto $h = HASH(p+s)$ como $h = HASH(p)+s$. Para llevar a cabo el ataque del arco iris con éxito frente a funciones \hash~que hacen uso de esta técnica es necesario generar tablas del arco iris para cada \textit{salt} posible, lo cual para tamaños de \textit{salt} pequeños no supone un problema serio, pero en cuanto se alcanza cierto tamaño de \textit{salt} resulta inviable implementar el ataque debido a la enorme cantidad de tablas necesarias.
+    
+    \item \textbf{Estiramiento}: esta técnica hace uso del \textit{salting}, concatenándolo a la contraseña antes de generar el valor \hash~correspondiente. Tras obtener dicho \hash~se repite el mismo proceso un número de veces determinado, esta vez concatenando el \textit{salt} al valor \hash~antes obtenido. De esta forma, además de requerir tablas del arco iris para cada \textit{salt} posible, las tablas han de replicar el bucle de estiramiento, lo cual como es fácilmente observable puede resultar en la inviabilidad del ataque.
+    
+\end{itemize}
 
-\chapter{El ataque del arco iris}
+La aparición de estas técnicas consiguió dejar prácticamente inútil al ataque del arco iris, aunque incluso después de dicha aparición, los sistemas que no hacen uso del \textit{salting} o el estiramiento siguen siendo vulnerables a este ataque. Un ejemplo muy notorio pueden ser algunas versiones del sistema operativo \textit{Windows} de la empresa Microsoft, los cuales hasta el sistema \textit{Windows} 7 (incluido) han sido atacados con éxito por tablas del arco iris. De hecho, en su artículo original, Philippe Oechslin consigue con éxito romper el 100\% de las contraseñas almacenadas en los sistemas \textit{Windows} contra los que lanza su ataque \cite{rainbow}. Esto puede servir como muestra de la magnitud que llegó a alcanzar el ataque del arco iris.
 
-En 2003, Philippe Oechslin \cite{rainbow} publicó en primer artículo en el cual aparecía el concepto de la tabla del arco iris. Dicha tabla consiste en una implementación más compleja del intercambio tiempo-memoria de Hellman, el cual se ha visto en la sección \ref{tmto}. Parte de la mayor complejidad se debe al aumento del tamaño de la tabla, ya que las limitaciones en cuanto a la memoria para almacenar las tablas que se daban lugar cuando Hellman publicó su artículo no ocurren en este caso.
+\chapter{Experimentación}
+
+\section{Especificaciones}
+
+\subsection{Dominio de contraseñas atacado}
+
+
+
+%Dominio, CRC-32, escalabilidad
+
+\subsection{Función atacada: CRC-32} \label{crc32}
+
+Para este proyecto se ha escogido atacar \hashes~de contraseñas generados utilizando la función \hash~CRC-32. Las siglas CRC provienen de \textit{cyclic redundancy check}, o lo que es lo mismo verificación por redundancia cíclica, mientras que el número 32 indica que las cadenas de salida resultantes tienen una longitud fija de 32 bits. Esta función pertenece a la familia de las funciones CRC, el uso de las cuales es bastante popular debido a su fácil implementación y rapidez de computación, entre otras cosas.
+
+Cabe destacar que son de sobra conocidas las debilidades que presenta esta función \hash~a la hora de ocultar contraseñas frente a ataques criptográficos como el ataque del arco iris. De tal forma, se presupone que se obtendrán resultados satisfactorios al implementar el ataque frente a esta función, lo cual servirá para representar una implementación base, la cual es perfectamente escalable, por ejemplo eligiendo atacar una función \hash~diferente con mayor longitud de cadenas como la función MD5.
+
+\section{Primera aproximación}
+
+\textbf{R1}, explicar diagonal, cribado en esquina inferior izquierda
+
+\section{Otra función de reconstrucción}
+
+\textbf{R2}
+
+\section{Combinando funciones de reconstrucción}
+
+Patrones
+
+\section{Comparación y discusión}
+
 
 Es momento de detallar la implementación llevada a cabo del ataque del arco iris. Antes de nada, se han de especificar el dominio de contraseñas y la función \hash~ empleados. Ya se ha visto anteriormente en qué consiste una función \hash, por lo cual no es requerido volver a explicarlo.
 
@@ -1082,47 +1185,55 @@ Tras todo esto, la efectividad del ataque del arco iris debería haber quedado s
 %                                BIBLIOGRAFÍA                                 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\begin{thebibliography}{10}
+\bibliographystyle{unsrt}
+\bibliography{referencias}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% MODELO DE ARTÍCULO                                                             %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\bibitem{hellman}
-    M. E. Hellman.
-    \newblock A cryptanalytic time-memory trade-off.
-    \newblock \textit{IEEE Transactions on Information Theory}, VOL. IT-26, NO. 4, julio 1980.
-
-\bibitem{rivest}
-    D.Denning.
-    \newblock \textit{Cryptography and Data Security},
-    \newblock p.100, Addison-Wesley, 1982.
-
-\bibitem{rainbow}
-    Oechslin P.
-    \newblock (2003) Making a Faster Cryptanalytic Time-Memory Trade-Off,
-    \newblock \textit{Boneh D. (eds) Advances in Cryptology - CRYPTO 2003}, Lecture Notes in Computer Science, vol 2729. Springer, Berlin, Germany.
-
-\bibitem{handbook}
-	J. Katz, A. J. Menezes, P. C. Van Oorschot \& S. A. Vanstone.
-	\newblock \textit{Handbook of applied cryptography},
-	\newblock (1996), CRC press.
-
-\end{thebibliography}
+%\begin{thebibliography}{10}
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% MODELO DE ARTÍCULO                                                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\bibitem{hellman}
+%    M. E. Hellman.
+%    \newblock A cryptanalytic time-memory trade-off.
+%    \newblock \textit{IEEE Transactions on Information Theory}, VOL. IT-26, NO. 4, julio 1980.
+%
+%\bibitem{rivest}
+%    D.Denning.
+%    \newblock \textit{Cryptography and Data Security},
+%    \newblock p.100, Addison-Wesley, 1982.
+%
+%\bibitem{rainbow}
+%    P. Oechslin
+%	\newblock \textit{Making a Faster Cryptanalytic Time-Memory Trade-Off},
+%    \newblock Boneh D. (eds) Advances in Cryptology - CRYPTO 2003, Lecture Notes in Computer Science, vol 2729. Springer, Berlin, Germany.
+%
+%\bibitem{handbook}
+%	J. Katz, A. J. Menezes, P. C. Van Oorschot, S. A. Vanstone.
+%	\newblock \textit{Handbook of applied cryptography},
+%	\newblock (1996), CRC press.
+%
+%\bibitem{birthday}
+%	M.C. Borja, J. Haigh.
+%	\newblock \textit{The birthday problem},
+%	\newblock Significance. 2007 Sep;4(3):124-7.
+%
+%\end{thebibliography}
 \cleardoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           APÈNDIXS  (Si n'hi ha!)                           %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\APPENDIX
+%\APPENDIX
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         LA CONFIGURACIO DEL SISTEMA                         %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\chapter{Configuración del sistema}
+%\chapter{Configuración del sistema}
 
-Por determinar
+%Por determinar
 
 %                              FI DEL DOCUMENT                                %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
