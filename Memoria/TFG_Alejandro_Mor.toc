@@ -29,20 +29,31 @@
 \contentsline {subsection}{\numberline {2.2.3}Empleando tablas para la b\IeC {\'u}squeda de colisiones}{9}{subsection.2.2.3}
 \contentsline {chapter}{\numberline {3}El ataque del arco iris}{11}{chapter.3}
 \contentsline {section}{\numberline {3.1}Desarrollo y relaci\IeC {\'o}n con trabajos anteriores}{11}{section.3.1}
-\contentsline {section}{\numberline {3.2}Puntos distinguidos}{12}{section.3.2}
-\contentsline {section}{\numberline {3.3}Contramedidas de una funci\IeC {\'o}n \textit {hash}~para inutilizar el ataque del arco iris}{13}{section.3.3}
+\contentsline {section}{\numberline {3.2}Tablas del arco iris: un viejo concepto revisitado}{11}{section.3.2}
+\contentsline {section}{\numberline {3.3}Propiedades fundamentales de las tablas del arco iris}{12}{section.3.3}
+\contentsline {subsection}{\numberline {3.3.1}Funciones de reconstrucci\IeC {\'o}n}{12}{subsection.3.3.1}
+\contentsline {subsection}{\numberline {3.3.2}Escalabilidad}{12}{subsection.3.3.2}
+\contentsline {section}{\numberline {3.4}Puntos distinguidos}{12}{section.3.4}
+\contentsline {section}{\numberline {3.5}Contramedidas de una funci\IeC {\'o}n \textit {hash}~para inutilizar el ataque del arco iris}{13}{section.3.5}
 \contentsline {chapter}{\numberline {4}Experimentaci\IeC {\'o}n}{15}{chapter.4}
 \contentsline {section}{\numberline {4.1}Especificaciones}{15}{section.4.1}
 \contentsline {subsection}{\numberline {4.1.1}Dominio de contrase\IeC {\~n}as atacado}{15}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Funci\IeC {\'o}n atacada: CRC-32}{15}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Primera aproximaci\IeC {\'o}n}{15}{section.4.2}
-\contentsline {section}{\numberline {4.3}Otra funci\IeC {\'o}n de reconstrucci\IeC {\'o}n}{15}{section.4.3}
-\contentsline {section}{\numberline {4.4}Combinando funciones de reconstrucci\IeC {\'o}n}{16}{section.4.4}
-\contentsline {section}{\numberline {4.5}Comparaci\IeC {\'o}n y discusi\IeC {\'o}n}{16}{section.4.5}
-\contentsline {section}{\numberline {4.6}Generaci\IeC {\'o}n de tablas del arco iris}{16}{section.4.6}
-\contentsline {section}{\numberline {4.7}Generaci\IeC {\'o}n de contrase\IeC {\~n}as aleatorias}{21}{section.4.7}
-\contentsline {section}{\numberline {4.8}Primeras pruebas}{22}{section.4.8}
-\contentsline {section}{\numberline {4.9}En busca de la configuraci\IeC {\'o}n perfecta}{27}{section.4.9}
-\contentsline {section}{\numberline {4.10}Resultados finales}{31}{section.4.10}
+\contentsline {subsection}{\numberline {4.1.2}Funci\IeC {\'o}n resumen atacada: CRC-32}{15}{subsection.4.1.2}
+\contentsline {section}{\numberline {4.2}Primera aproximaci\IeC {\'o}n}{16}{section.4.2}
+\contentsline {subsection}{\numberline {4.2.1}Dimensiones iniciales}{16}{subsection.4.2.1}
+\contentsline {subsection}{\numberline {4.2.2}Funci\IeC {\'o}n de reconstrucci\IeC {\'o}n}{17}{subsection.4.2.2}
+\contentsline {subsection}{\numberline {4.2.3}Generaci\IeC {\'o}n y uso de tablas del arco iris}{17}{subsection.4.2.3}
+\contentsline {subsection}{\numberline {4.2.4}\IeC {\'U}ltimo ajuste: la estructura de datos}{19}{subsection.4.2.4}
+\contentsline {subsection}{\numberline {4.2.5}Generaci\IeC {\'o}n de contrase\IeC {\~n}as de acceso}{20}{subsection.4.2.5}
+\contentsline {subsection}{\numberline {4.2.6}Primeras pruebas}{20}{subsection.4.2.6}
+\contentsline {section}{\numberline {4.3}Una nueva funci\IeC {\'o}n de reconstrucci\IeC {\'o}n}{22}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Nuevos resultados}{22}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Combinando funciones de reconstrucci\IeC {\'o}n}{23}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Combinaci\IeC {\'o}n b\IeC {\'a}sica}{23}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}Una combinaci\IeC {\'o}n algo m\IeC {\'a}s compleja}{25}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}La combinaci\IeC {\'o}n final, la m\IeC {\'a}s compleja}{26}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}En busca de la configuraci\IeC {\'o}n perfecta}{27}{section.4.5}
+\contentsline {section}{\numberline {4.6}Comparaci\IeC {\'o}n y discusi\IeC {\'o}n}{31}{section.4.6}
+\contentsline {section}{\numberline {4.7}Resultados finales}{31}{section.4.7}
 \contentsline {chapter}{\numberline {5}Conclusiones}{37}{chapter.5}
-\contentsline {chapter}{Bibliograf\'{\i }a}{43}{chapter*.20}
+\contentsline {chapter}{Bibliograf\'{\i }a}{43}{chapter*.23}

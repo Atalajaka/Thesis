@@ -21,20 +21,27 @@
 \BOOKMARK [2][-]{subsection.2.2.3}{Empleando tablas para la b\372squeda de colisiones}{section.2.2}% 21
 \BOOKMARK [0][-]{chapter.3}{El ataque del arco iris}{}% 22
 \BOOKMARK [1][-]{section.3.1}{Desarrollo y relaci\363n con trabajos anteriores}{chapter.3}% 23
-\BOOKMARK [1][-]{section.3.2}{Puntos distinguidos}{chapter.3}% 24
-\BOOKMARK [1][-]{section.3.3}{Contramedidas de una funci\363n hash para inutilizar el ataque del arco iris}{chapter.3}% 25
-\BOOKMARK [0][-]{chapter.4}{Experimentaci\363n}{}% 26
-\BOOKMARK [1][-]{section.4.1}{Especificaciones}{chapter.4}% 27
-\BOOKMARK [2][-]{subsection.4.1.1}{Dominio de contrase\361as atacado}{section.4.1}% 28
-\BOOKMARK [2][-]{subsection.4.1.2}{Funci\363n atacada: CRC-32}{section.4.1}% 29
-\BOOKMARK [1][-]{section.4.2}{Primera aproximaci\363n}{chapter.4}% 30
-\BOOKMARK [1][-]{section.4.3}{Otra funci\363n de reconstrucci\363n}{chapter.4}% 31
-\BOOKMARK [1][-]{section.4.4}{Combinando funciones de reconstrucci\363n}{chapter.4}% 32
-\BOOKMARK [1][-]{section.4.5}{Comparaci\363n y discusi\363n}{chapter.4}% 33
-\BOOKMARK [1][-]{section.4.6}{Generaci\363n de tablas del arco iris}{chapter.4}% 34
-\BOOKMARK [1][-]{section.4.7}{Generaci\363n de contrase\361as aleatorias}{chapter.4}% 35
-\BOOKMARK [1][-]{section.4.8}{Primeras pruebas}{chapter.4}% 36
-\BOOKMARK [1][-]{section.4.9}{En busca de la configuraci\363n perfecta}{chapter.4}% 37
-\BOOKMARK [1][-]{section.4.10}{Resultados finales}{chapter.4}% 38
-\BOOKMARK [0][-]{chapter.5}{Conclusiones}{}% 39
-\BOOKMARK [0][-]{chapter*.20}{Bibliograf\355a}{}% 40
+\BOOKMARK [1][-]{section.3.2}{Tablas del arco iris: un viejo concepto revisitado}{chapter.3}% 24
+\BOOKMARK [1][-]{section.3.3}{Propiedades fundamentales de las tablas del arco iris}{chapter.3}% 25
+\BOOKMARK [2][-]{subsection.3.3.1}{Funciones de reconstrucci\363n}{section.3.3}% 26
+\BOOKMARK [2][-]{subsection.3.3.2}{Escalabilidad}{section.3.3}% 27
+\BOOKMARK [1][-]{section.3.4}{Puntos distinguidos}{chapter.3}% 28
+\BOOKMARK [1][-]{section.3.5}{Contramedidas de una funci\363n hash para inutilizar el ataque del arco iris}{chapter.3}% 29
+\BOOKMARK [0][-]{chapter.4}{Experimentaci\363n}{}% 30
+\BOOKMARK [1][-]{section.4.1}{Especificaciones}{chapter.4}% 31
+\BOOKMARK [2][-]{subsection.4.1.1}{Dominio de contrase\361as atacado}{section.4.1}% 32
+\BOOKMARK [2][-]{subsection.4.1.2}{Funci\363n resumen atacada: CRC-32}{section.4.1}% 33
+\BOOKMARK [1][-]{section.4.2}{Primera aproximaci\363n}{chapter.4}% 34
+\BOOKMARK [2][-]{subsection.4.2.1}{Dimensiones iniciales}{section.4.2}% 35
+\BOOKMARK [2][-]{subsection.4.2.2}{Funci\363n de reconstrucci\363n}{section.4.2}% 36
+\BOOKMARK [2][-]{subsection.4.2.3}{Generaci\363n y uso de tablas del arco iris}{section.4.2}% 37
+\BOOKMARK [1][-]{section.4.3}{Otra funci\363n de reconstrucci\363n}{chapter.4}% 38
+\BOOKMARK [1][-]{section.4.4}{Combinando funciones de reconstrucci\363n}{chapter.4}% 39
+\BOOKMARK [1][-]{section.4.5}{Comparaci\363n y discusi\363n}{chapter.4}% 40
+\BOOKMARK [1][-]{section.4.6}{Generaci\363n de tablas del arco iris}{chapter.4}% 41
+\BOOKMARK [1][-]{section.4.7}{Generaci\363n de contrase\361as aleatorias}{chapter.4}% 42
+\BOOKMARK [1][-]{section.4.8}{Primeras pruebas}{chapter.4}% 43
+\BOOKMARK [1][-]{section.4.9}{En busca de la configuraci\363n perfecta}{chapter.4}% 44
+\BOOKMARK [1][-]{section.4.10}{Resultados finales}{chapter.4}% 45
+\BOOKMARK [0][-]{chapter.5}{Conclusiones}{}% 46
+\BOOKMARK [0][-]{chapter*.20}{Bibliograf\355a}{}% 47
