@@ -217,7 +217,7 @@ El objetivo principal de este trabajo consiste en diseñar un método eficiente 
 
 %En primer lugar se introducirá el concepto de funciones resumen o funciones \hash, su funcionamiento, aplicaciones, debilidades y fortalezas frente a este tipo de ataque. Seguidamente se presentarán las técnicas originales que con el tiempo dieron lugar al ataque del arco iris y sus primeras implementaciones. A continuación se dará una extensa explicación sobre el ataque del arco iris en sí, con todos los factores que se han de tener en cuenta a la hora de su desarrollo e implementación, seguido de la aplicación del ataque del arco iris llevada a cabo en este proyecto, la cual será presentada en detalle, indicando los factores tenidos en cuenta para ello y relacionándolos con lo anteriormente explicado. A ello le seguirá una experimentación y su posterior interpretación, para concluir cuál resulta ser la mejor aproximación. Finalmente, se realizarán las últimas conclusiones obtenidas después del desarrollo completo del trabajo.
 
-Habiendo establecido una base introduciendo conceptos fundamentales tanto de la criptografía como de las funciones resumen, antes de proceder a la exposición del proceso de experimentación llevado a cabo todavía es necesario pasar por los trabajos anteriores que sirvieron de inspiración para la implementación llevada a cabo en este proyecto.
+Habiendo establecido una base introduciendo conceptos fundamentales tanto de la criptografía como de las funciones resumen, antes de proceder a la exposición del proceso de experimentación llevado a cabo, todavía es necesario hacer un repaso de los trabajos anteriores que sirvieron como inspiración para la implementación llevada a cabo en este proyecto.
 
 Una vez establecidos los trabajos previos se podrá presentar el funcionamiento del ataque implementado, y tras ello pasar a exponer en detalle la implementación desarrollada, mostrando el proceso seguido, los resultados obtenidos y realizando posteriormente un análisis de los mismos.
 
@@ -766,7 +766,9 @@ Estos resultados son peores que los obtenidos anteriormente tanto por el patrón
 
 Tras la primera tanda de pruebas, es fácilmente observable que, para tablas que superen las 10.000 filas, el porcentaje de éxito no baja del 88.0\%. Dichas tablas serán capaces de romper la gran mayoría de las contraseñas almacenadas en el sistema. Si bien esta es la intención del ataque del arco iris, resultaría interesante indagar en tablas de menor tamaño, para así poder determinar si realmente es necesario crear tablas que contengan tantas filas, o si por el contrario existen ciertas configuraciones que son capaces de brindar resultados igual de buenos que las tablas más grandes. Encontrar dichas configuraciones es de gran interés, ya que de ser posible conseguirlo significaría una reducción en los requerimientos tanto de tiempo como de memoria, algo que siempre es beneficioso en este tipo de ataques.
 
-Si bien en las pruebas anteriores la tabla con un menor número de filas poseía $m =$ 1.000 filas, en la búsqueda de las tablas con resultados similares a los mejores obtenidos anteriormente pero con menor tamaño será necesario emplear tamaños de tabla diferentes, expandiendo la búsqueda con tamaños menores a los vistos anteriormente. De tal forma, la tabla con menos filas pasará a tener $m = 250$, mientras que la tabla más grande tendrá $m = 10.000$ filas. En concreto, se generarán tantas tablas como posibles permutaciones existan de los siguientes conjuntos de $m$ y $t$:
+\subsection{Nuevos tamaños} \label{nuevos_tamaños}
+
+Si bien en las pruebas anteriores la tabla con un menor número de filas poseía $m =$ 1.000 filas, en la búsqueda de las tablas con resultados similares a los mejores obtenidos anteriormente pero con menor tamaño será necesario emplear tamaños de tabla diferentes, expandiendo la búsqueda con tamaños menores a los vistos anteriormente. De tal forma, la tabla con menos filas pasará a tener $m = 250$, mientras que la tabla más grande tendrá $m =$ 10.000 filas. En concreto, se generarán tantas tablas como posibles permutaciones existan de los siguientes conjuntos de $m$ y $t$:
 \\
 \begin{itemize}
 
@@ -776,7 +778,9 @@ Si bien en las pruebas anteriores la tabla con un menor número de filas poseía
     
 \end{itemize}
 
-En total se generarán $6 \cdot 9 = 54$ tablas para cada combinación de funciones de reconstrucción. Tras generar todas estas tablas, pero antes de obtener su rendimiento, resulta interesante observar las colisiones dichas tablas en las diferentes combinaciones de funciones de reconstrucción. Para ello se obtendrá el porcentaje de colisiones de cada tabla, obteniendo primero el número de colisiones recorriendo sus últimas columnas, determinando cuántas de ellas no se repiten y asignándolas a un valor $c$, para seguidamente restarlo al número total de filas de la tabla ($m$), siendo el resultado de esta operación el número de colisiones de la tabla. Acto seguido dicho número de colisiones será dividido entre el número de filas de la tabla ($m$), dando como resultado el porcentaje de colisiones de la tabla. Para dichos porcentajes, al igual que se ha hecho en la sección anterior con los porcentajes de éxito, se empleará un código de color, el cual será el siguiente:
+\subsection{Colisiones de las nuevas tablas}
+
+En total se generarán $6 \cdot 9 = 54$ tablas para cada combinación de funciones de reconstrucción. Tras generar todas estas tablas, pero antes de obtener su rendimiento, resulta de interés observar las colisiones dichas tablas en las diferentes combinaciones de funciones de reconstrucción. Para ello se obtendrá el porcentaje de colisiones de cada tabla, obteniendo primero el número de colisiones recorriendo sus últimas columnas, determinando cuántos de sus valores no se repiten y asignando esa cantidad a un valor $c$, para seguidamente restarlo al número total de filas de la tabla ($m$), siendo el resultado de esta operación el número de colisiones de la tabla. Acto seguido dicho número de colisiones será dividido entre el número de filas de la tabla ($m$), dando como resultado el porcentaje de colisiones de la tabla. Para dichos porcentajes, al igual que se ha hecho anteriormente con los porcentajes de éxito, se empleará un código de color, el cual será el siguiente:
 
 \begin{itemize}
 
@@ -833,7 +837,6 @@ Para las tablas que emplean únicamente la función de reconstrucción utilizand
 	\caption{Porcentajes de colisiones para las tablas empleando \textbf{R2}}
 	\label{colR2}
 \end{table}
-~\\
 
 En esta ocasión, aunque para las tablas de menor tamaño se obtiene un menor número de colisiones, en cuanto aumentan las dimensiones de las tablas los resultados empeoran respecto a los anteriores. Esta es la razón por la cual, como se ha visto en las primeras pruebas, estas tablas tienen un peor rendimiento que las que emplean únicamente \textbf{R1}, aunque aún así seguían siendo buenos resultados. En este caso se han generado más tablas con peores porcentajes de colisiones, la más grande de ellas superando el 90 por ciento de colisiones, lo que se traduce en menos de 1.000 contraseñas cubiertas por una tabla que en principio se esperaba que cubriese 10.000. También hay más tablas por encima del cincuenta por ciento, cubriendo algo menos de la mitad de las contraseñas previstas, lo cual considerando su tamaño puede llegar a comprometer su rendimiento de manera significativa.
 
@@ -879,7 +882,7 @@ Para las tablas que emplean el denominado patrón reducido (\textbf{R1 + R2 + R2
 	\label{colpp}
 \end{table}
 
-De nuevo se obtienen unos resultados que no cumplen con lo inicialmente esperado en ciertos aspectos. Con el uso de este patrón se esperaba reducir el número de colisiones respecto a tabla que empleasen tan sólo \textbf{R1} o \textbf{R2}, lo cual como puede observarse ocurre con claridad. Lo inesperado en este caso es que estas tablas mejoren en cuanto al porcentaje de colisiones respecto al patrón extenso, siendo esta mejora más que notable. Las tablas que emplean este patrón reducido poseen el menor número de colisiones, llegando incluso a no existir ninguna tabla con más de un 67\% de colisiones. Tan sólo nueve tablas de las 54 totales en este caso superan el 25 por ciento de colisiones, y de estas únicamente dos pasan del 50 por ciento. Sin duda alguna estos son los mejores resultados en cuanto a colisiones se refiere.
+De nuevo se obtienen unos resultados que no cumplen con lo inicialmente esperado en ciertos aspectos. Con el uso de este patrón se esperaba reducir el número de colisiones respecto a tabla que empleasen tan sólo \textbf{R1} o \textbf{R2}, lo cual como puede observarse ocurre con claridad. Las tablas que emplean este patrón reducido poseen el menor número de colisiones, llegando incluso a no existir ninguna tabla con más de un 67\% de colisiones. Tan sólo nueve tablas de las 54 totales en este caso superan el 25 por ciento de colisiones, y de estas únicamente dos pasan del 50 por ciento. Sin duda alguna estos son los mejores resultados en cuanto a colisiones se refiere.
 
 Por último, en cuanto a las tablas que emplean el denominado patrón extenso (\textbf{R1 + R2 + R2 + R1 + R1 + R2 + R2 + R2}) se observan los siguientes resultados:
 
@@ -901,29 +904,18 @@ Por último, en cuanto a las tablas que emplean el denominado patrón extenso (\
 	\label{colPG}
 \end{table}
 
-Puede observarse como las tablas con esta configuración poseen menor número de colisiones que las anteriores en la Tabla \ref{colR1R2} (\textbf{R1 + R2}), lo cual era de esperar, ya que el objetivo de establecer este patrón era forzar una reducción en el número de colisiones. Lo sorprendente en esta caso es que siguen habiendo porcentajes de colisiones mayores que en la Tabla \ref{colR1} (\textbf{R1}). Esto resulta totalmente inesperado, ya que la función de reconstrucción \textbf{R1} parece en principio la más simple, dando a entender que sería la que más colisiones produciría, empeorando los resultados. Una cosa queda clara, y es que el objetivo inicial de emplear este patrón no se ha cumplido, aunque resta por ver la efectividad de estas tablas a la hora de tratar de romper contraseñas.
-
-\section{Comparación y discusión}
+Puede observarse como las tablas con esta configuración poseen menor número de colisiones que las anteriores en la Tabla \ref{colR1R2} (\textbf{R1 + R2}), lo cual era de esperar, ya que el objetivo de establecer este patrón era forzar una reducción en el número de colisiones. Lo sorprendente en esta caso es que siguen habiendo porcentajes de colisiones mayores que en la Tabla \ref{colR1} (\textbf{R1}). Esto resulta totalmente inesperado, ya que la función de reconstrucción \textbf{R1} parece en principio la más simple, dando a entender que sería la que más colisiones produciría, empeorando los resultados. Otro hecho sorprendente en este caso es que las tablas que emplean el patrón reducido resulten mejores en cuanto al porcentaje de colisiones respecto al patrón extenso, siendo esta mejora más que notable. Una cosa queda clara, y es que el objetivo inicial de emplear este patrón no se ha cumplido, aunque resta por ver la efectividad de estas tablas a la hora de tratar de romper contraseñas.
 
 \section{Resultados finales}
 
-Habiendo obtenido los porcentajes de colisiones para las tablas con cada una de las combinaciones de funciones de reconstrucción es el momento de realizar el ataque del arco iris con ellas. De esta forma se espera determinar qué tamaño de tabla es el ideal en cuanto a contraseñas rotas, tiempo empleado en su generación y memoria requerida para su almacenamiento. En principio lo más lógico sería esperar que las tablas con menor número de colisiones fueran las que mejor rendimiento tuvieran, ya que cuantas menos colisiones se den lugar en una tabla mayor será el número de contraseñas cubiertas por esa tabla. Siguiendo esta lógica, las tablas con mayor éxito deberían de ser las que hacen uso del patrón pequeño (\textbf{R1 + R2 + R2}), ya que presentan una diferencia significante en sus porcentajes de colisiones, como se ha visto en la Tabla \ref{colpp}.
+Habiendo obtenido los porcentajes de colisiones para las tablas con cada una de las combinaciones de funciones de reconstrucción es el momento de realizar el ataque del arco iris con ellas. De esta forma se espera determinar qué tamaño de tabla es el ideal en cuanto a contraseñas rotas, tiempo empleado en su generación y memoria requerida para su almacenamiento. En principio lo más lógico sería esperar que las tablas con menor número de colisiones fueran las que mejor rendimiento tuvieran, ya que cuantas menos colisiones se den lugar en una tabla mayor será el número de contraseñas cubiertas por esa tabla. Siguiendo esta lógica, las tablas con mayor éxito deberían de ser las que hacen uso del patrón reducido (\textbf{R1 + R2 + R2}), ya que presentan una diferencia significante en sus porcentajes de colisiones, como se ha visto en la Tabla \ref{colpp}.
 
-Como ya se ha hecho anteriormente en la sección \ref{primeras pruebas}, cada una de las tablas que se pretende analizar tendrá la tarea de atacar las mismas contraseñas aleatorias generadas en el apartado \ref{contraseñas}, obteniendo el porcentaje de contraseñas rotas respecto al total de contraseñas a romper.
+Como ya se ha hecho anteriormente en el apartado \ref{primeras pruebas}, cada una de las tablas que se pretende analizar tendrá la tarea de atacar las mismas contraseñas aleatorias generadas en el apartado \ref{contraseñas}, obteniendo el porcentaje de contraseñas rotas respecto al total de contraseñas a romper.
 
 Comenzando como es habitual por las tablas que tan sólo hacen uso de la función de reconstrucción con la operación módulo un millón (\textbf{R1}) se obtienen los siguientes resultados:
-\\
-\\
-\\
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.5]{exM1.png}
-%    \caption{Porcentajes de éxito para las tablas que emplean \textbf{R1}}
-%    \label{exR1}
-%\end{figure}
 
 \def\arraystretch{1.5}
-\begin{table}[ht]
+\begin{table}[H]
 	\centering
 	\resizebox{\textwidth}{!}{\begin{tabular}{|c|r|c|c|c|c|c|c|c|c|c|}
 		\hline
@@ -939,7 +931,6 @@ Comenzando como es habitual por las tablas que tan sólo hacen uso de la funció
 	\caption{Porcentajes de éxito para las tablas que emplean \textbf{R1}}
 	\label{exR1}
 \end{table}
-~\\
 
 Como era de esperar, las tablas de menor tamaño no realizan un buen trabajo a la hora de adivinar contraseñas. Aunque dichas tablas tenían porcentajes de colisiones realmente bajos, puede observarse ahora como esa característica no es suficiente para romper muchas contraseñas. Hace falta que las tablas posean al menos 1.000 filas para comenzar a ser efectivas, y una vez superan las 2.000 filas los resultados encontrados son en su mayoría satisfactorios. En esta ocasión no se han generado tablas con efectividad perfecta, es decir, con un porcentaje de éxito del 100\%, aunque algunas tablas se han quedado a las puertas de conseguirlo.
 
@@ -948,15 +939,6 @@ Es interesante también observar que la profundidad ideal para las tablas con es
 Viendo estos resultados, si se pretende emplear la tabla de menor tamaño posible que sea aceptable a la hora de romper contraseñas, habría de emplearse la tabla de dimensiones $m =$ 2.000, $t =$ 200, mientras que los mejores resultados los brinda la tabla de dimensiones $m =$ 10.000, $t =$ 400.
 
 Pasando ahora a las tablas que emplean únicamente la función de reconstrucción con el \hash~en hexadecimal (\textbf{R2}) se obtienen los siguientes resultados:
-\\
-\\
-\\
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.5]{exHex.png}
-%    \caption{Porcentajes de éxito para las tablas que emplean \textbf{R2}}
-%    \label{exR2}
-%\end{figure}
 
 \def\arraystretch{1.5}
 \begin{table}[H]
@@ -975,20 +957,12 @@ Pasando ahora a las tablas que emplean únicamente la función de reconstrucció
 	\caption{Porcentajes de éxito para las tablas que emplean \textbf{R2}}
 	\label{exR2}
 \end{table}
-~\\
 
-Como se puede observar, aunque para las tablas más pequeñas se han obtenido mejores resultados, en cuanto las dimensiones aumentan los resultados empeoran respecto a los anteriores. En esta ocasión se han generado el mismo número de tablas con un porcentaje de éxito por debajo del 70\%, pero existen más tablas que no llegan a ser aceptables, así como menos tablas con un buen rendimiento. Incluso la mejor de estas tablas rinde peor que la mejor de las anteriores (97'40 $<$ 98'30). Se puede asumir que este empeoramiento es debido al mayor porcentaje de colisiones de estas tablas (Tabla \ref{colR2}) respecto a las anteriores (Tabla \ref{colR1}). Otra diferencia que se puede apreciar al comparar estos resultados con los obtenidos en la Tabla \ref{exR1} es que, en esta ocasión, la profundidad de tabla ideal parece ser $t =$ 200, lo cual es algo razonable debido al mayor número de colisiones, ya que como se ha explicado antes, mayor profundidad equivale a más colisiones.
+Como se puede observar, aunque para las tablas más pequeñas se han obtenido mejores resultados, en cuanto las dimensiones aumentan los resultados empeoran respecto a los anteriores. En esta ocasión se han generado el mismo número de tablas con un porcentaje de éxito por debajo del 70\%, pero existen más tablas que no llegan a ser aceptables, así como menos tablas con un buen rendimiento. Incluso la mejor de estas tablas rinde peor que la mejor de las anteriores (97'40\% $<$ 98'30\%). Se puede asumir que este empeoramiento es debido al mayor porcentaje de colisiones de estas tablas (Tabla \ref{colR2}) respecto a las anteriores (Tabla \ref{colR1}). Otra diferencia que se puede apreciar al comparar estos resultados con los obtenidos en la Tabla \ref{exR1} es que, en esta ocasión, la profundidad de tabla ideal parece ser $t =$ 200, lo cual es algo razonable debido al mayor número de colisiones, ya que como se ha explicado antes, mayor profundidad equivale a más colisiones.
 
 En esta ocasión, de nuevo, la tabla de menor tamaño con un rendimiento aceptable ha de tener 2.000 filas.
 
 Atacando las contraseñas con las tablas que entrelazan ambas funciones de reconstrucción (\textbf{R1 + R2}) se obtiene:
-
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.5]{exR1R2.png}
-%    \caption{Porcentajes de éxito para las tablas que emplean \textbf{R1 + R2}}
-%    \label{exR1R2}
-%\end{figure}
 
 \def\arraystretch{1.5}
 \begin{table}[H]
@@ -1008,51 +982,11 @@ Atacando las contraseñas con las tablas que entrelazan ambas funciones de recon
 	\label{exR1R2}
 \end{table}
 
-Como ya ocurriera en las primeras pruebas realizadas en la sección \ref{primeras pruebas}, las tablas que emplean la secuencia de funciones de reconstrucción \textbf{R1 + R2} consiguen romper el mayor número de contraseñas. El número de tablas con un rendimiento pobre ha reducido, mientras que ha aumentado de forma significativa la cantidad de tablas idóneas, algunas de ellas llegando incluso a ser capaces de romper todas las contraseñas almacenadas. Al igual que ha ocurrido con las tablas anteriores (Tabla \ref{exR2}), la profundidad ideal es de $t = 200$, lo cual permite un ahorro de tiempo más que notable en el proceso de construcción de las tablas.
+Como ya ocurriera en las primeras pruebas realizadas en el apartado \ref{primeras pruebas}, las tablas que emplean la secuencia de funciones de reconstrucción \textbf{R1 + R2} consiguen romper el mayor número de contraseñas. El número de tablas con un rendimiento pobre se ha reducido, mientras que ha aumentado de forma significativa la cantidad de tablas idóneas, algunas de ellas llegando incluso a ser capaces de romper todas las contraseñas almacenadas. Al igual que ha ocurrido con las tablas del arco iris anteriores (Tabla \ref{exR2}), la profundidad ideal es de $t = 200$, lo cual permite un ahorro de tiempo más que notable en el proceso de construcción de las tablas.
 
-En este caso se ha visto reducido el número mínimo de filas necesarias para que una tabla sea considerada como aceptable, $m = 1500$. También se ha podido ver que con una configuración de funciones de reconstrucción apropiada no es necesario generar tablas de más de 10.000 filas, lo cual permite reducir los requerimientos de memoria significativamente.
+En este caso se ha visto reducido el número mínimo de filas necesarias para que una tabla sea considerada como aceptable, con $m = $1.500. También se ha podido ver que con una configuración de funciones de reconstrucción apropiada no es necesario generar tablas de más de 10.000 filas, lo cual permite reducir los requerimientos de memoria significativamente.
 
-Observando los resultados obtenidos con tablas que emplean el denominado patrón grande (\textbf{R1 + R2 + R2 + R1 + R1 + R2 + R2 + R2}) se obtiene:
-\\
-\\
-\\
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.5]{exPG.png}
-%    \caption{Porcentajes de éxito para las tablas que emplean el patrón grande}
-%    \label{exPG}
-%\end{figure}
-
-\def\arraystretch{1.5}
-\begin{table}[H]
-	\centering
-	\resizebox{\textwidth}{!}{\begin{tabular}{|c|r|c|c|c|c|c|c|c|c|c|}
-		\hline
-		\multirow{6}{*}{$t$} & 50 & \textcolor{r}{4.6\%} & \textcolor{r}{8.9\%} & \textcolor{r}{14.2\%} & \textcolor{r}{19.6\%} & \textcolor{r}{27.4\%} & \textcolor{r}{33.0\%} & \textcolor{r}{40.2\%} & \textcolor{r}{63.1\%} & \textcolor{y}{82.8\%} \\ \cline{2-11}
-		& 100 & \textcolor{r}{12.2\%} & \textcolor{r}{22.9\%} & \textcolor{r}{32.7\%} & \textcolor{r}{41.2\%} & \textcolor{r}{54.5\%} & \textcolor{r}{62.9\%} & \textcolor{y}{70.4\%} & \textcolor{b}{87.4\%} & \textcolor{g}{95.9\%} \\ \cline{2-11}
-		& 200 & \textcolor{r}{20.7\%} & \textcolor{r}{38.1\%} & \textcolor{r}{51.5\%} & \textcolor{r}{61.4\%} & \textcolor{y}{74.5\%} & \textcolor{y}{81.5\%} & \textcolor{b}{86.7\%} & \textcolor{g}{96.0\%} & \textcolor{g}{98.8\%} \\ \cline{2-11}
-		& 400 & \textcolor{r}{23.4\%} & \textcolor{r}{44.1\%} & \textcolor{r}{58.8\%} & \textcolor{r}{68.9\%} & \textcolor{y}{82.7\%} & \textcolor{b}{89.0\%} & \textcolor{b}{92.2\%} & \textcolor{g}{98.0\%} & \textcolor{g}{99.3\%} \\ \cline{2-11}
-		& 500 & \textcolor{r}{23.9\%} & \textcolor{r}{46.1\%} & \textcolor{r}{62.0\%} & \textcolor{y}{73.4\%} & \textcolor{b}{85.1\%} & \textcolor{b}{90.4\%} & \textcolor{b}{94.0\%} & \textcolor{g}{98.3\%} & \textcolor{g}{99.6\%} \\ \cline{2-11}
-		& 1000 & \textcolor{r}{22.2\%} & \textcolor{r}{38.9\%} & \textcolor{r}{51.0\%} & \textcolor{r}{60.4\%} & \textcolor{y}{74.1\%} & \textcolor{y}{80.8\%} & \textcolor{y}{84.3\%} & \textcolor{b}{92.6\%} & \textcolor{g}{95.5\%} \\ \hline
-		& & 250 & 500 & 750 & 1000 & 1500 & 2000 & 2500 & 5000 & 10000 \\ \hline
-		& & \multicolumn{9}{c|}{$m$} \\ \hline
-	\end{tabular}}
-	\caption{Porcentajes de éxito para las tablas que emplean patrón grande}
-	\label{exPG}
-\end{table}
-
-Aunque en esta ocasión no se ha conseguido mejorar respecto a los resultados anteriores, sí que se aprecia un mejor rendimiento que las tablas que hacen uso de tan sólo una función de reconstrucción. A pesar de generar más tablas con malos porcentajes de éxito, el número de tablas idóneas se ha visto aumentado respecto a las Tablas \ref{exR1} y \ref{exR2}, dos de las cuales se han quedado muy cerca de romper todas las contraseñas. Puede apreciarse también algo que no había ocurrido hasta este momento. Para las tablas de las figuras anteriores, aquellas que superan las 2.000 filas son, como mínimo, aceptables. Por contrario, en este caso existe una tabla con 5.000 filas con un porcentaje de éxito por debajo del 70 por ciento. También cambia el valor ideal del parámetro $t$, el cual en esta ocasión es de 500 columnas. Esto se le atribuye a el patrón establecido, ya que al desarrollarse durante ocho entradas consecutivas requiere de una profundidad de tabla mayor para obtener buenos resultados.
-
-Al igual que en los resultados de la Tabla \ref{exR1R2}, una tabla con un mínimo de 1.500 filas daría un buen rendimiento mientras mantiene un tamaño reducido.
-
-Por último, realizando el ataque con las tablas que emplean el denominado patrón pequeño (\textbf{R1 + R2 + R2}) pueden obtenerse los siguientes resultados:
-\\
-%\begin{figure}[H]
-%    \centering
-%    \includegraphics[scale=0.5]{expp.png}
-%    \caption{Porcentajes de éxito para las tablas que emplean el patrón pequeño}
-%    \label{expp}
-%\end{figure}
+Realizando el ataque con las tablas que emplean el denominado patrón reducido (\textbf{R1 + R2 + R2}) pueden obtenerse los siguientes resultados:
 
 \def\arraystretch{1.5}
 \begin{table}[H]
@@ -1068,53 +1002,65 @@ Por último, realizando el ataque con las tablas que emplean el denominado patr�
 		& & 250 & 500 & 750 & 1000 & 1500 & 2000 & 2500 & 5000 & 10000 \\ \hline
 		& & \multicolumn{9}{c|}{$m$} \\ \hline
 	\end{tabular}}
-	\caption{Porcentajes de éxito para las tablas que emplean patrón pequeño}
+	\caption{Porcentajes de éxito para las tablas que emplean patrón reducido}
 	\label{expp}
 \end{table}
 
-Estos resultados son mejores que los obtenidos con el patrón grande, aunque no superan a los obtenidos en la Tabla \ref{exR1R2}. Tan sólo resultan peores en un apartado respecto al patrón grande, y es en el tamaño mínimo de tabla para obtener resultados satisfactorios, ya que se ha pasado de requerir 1.500 filas a 2.000, aunque la diferencia de almacenamiento en memoria es nimia. De nuevo ha habido una tabla muy cerca de romper las 1.000 contraseñas almacenadas. Hay un hecho característico en estas tablas, el cual corresponde con la profundidad ideal. Si bien para cualquiera de los resultados anteriores existe cierto número de columnas que presenta el mejor rendimiento, en este para no se aprecia un único valor de $t$ que brinde los mejores resultados para cada valor de $m$. Observando los resultados con detenimiento se puede apreciar que, dependiendo del número de filas, la cantidad ideal de columnas será $t = $200 o $t =$ 1.000 para las tablas con un mínimo de 1.000 filas. Como último apunte, en este caso ocurre igual que en las Tablas \ref{exR1} y \ref{exR2} a la hora de buscar la tabla de tamaño mínimo con resultados aceptables, lo cual se da con $m =$ 2.000 filas.
+Estos resultados son mejores que los obtenidos con el patrón extenso, aunque no superan a los obtenidos en la Tabla \ref{exR1R2}. Tan sólo resultan peores en un apartado respecto al patrón extenso, y es en el tamaño mínimo de tabla para obtener resultados satisfactorios, ya que se ha pasado de requerir 1.500 filas a 2.000, aunque la diferencia de almacenamiento en memoria es nimia. De nuevo ha habido una tabla muy cerca de romper las 1.000 contraseñas almacenadas. Hay un hecho característico en estas tablas, el cual corresponde con la profundidad ideal. Si bien para cualquiera de los resultados anteriores existe cierto número de columnas que presenta el mejor rendimiento, en este para no se aprecia un único valor de $t$ que brinde los mejores resultados para cada valor de $m$. Como último apunte, en este caso ocurre igual que en las Tablas \ref{exR1} y \ref{exR2} a la hora de buscar la tabla de tamaño mínimo con resultados aceptables, lo cual se da con $m =$ 2.000 filas.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%                                 CONCLUSIONES                                 %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Por último, observando los resultados obtenidos con tablas que emplean el denominado patrón extenso (\textbf{R1 + R2 + R2 + R1 + R1 + R2 + R2 + R2}) se obtiene:
 
-\chapter{Conclusiones}
+\def\arraystretch{1.5}
+\begin{table}[H]
+	\centering
+	\resizebox{\textwidth}{!}{\begin{tabular}{|c|r|c|c|c|c|c|c|c|c|c|}
+		\hline
+		\multirow{6}{*}{$t$} & 50 & \textcolor{r}{4.6\%} & \textcolor{r}{8.9\%} & \textcolor{r}{14.2\%} & \textcolor{r}{19.6\%} & \textcolor{r}{27.4\%} & \textcolor{r}{33.0\%} & \textcolor{r}{40.2\%} & \textcolor{r}{63.1\%} & \textcolor{y}{82.8\%} \\ \cline{2-11}
+		& 100 & \textcolor{r}{12.2\%} & \textcolor{r}{22.9\%} & \textcolor{r}{32.7\%} & \textcolor{r}{41.2\%} & \textcolor{r}{54.5\%} & \textcolor{r}{62.9\%} & \textcolor{y}{70.4\%} & \textcolor{b}{87.4\%} & \textcolor{g}{95.9\%} \\ \cline{2-11}
+		& 200 & \textcolor{r}{20.7\%} & \textcolor{r}{38.1\%} & \textcolor{r}{51.5\%} & \textcolor{r}{61.4\%} & \textcolor{y}{74.5\%} & \textcolor{y}{81.5\%} & \textcolor{b}{86.7\%} & \textcolor{g}{96.0\%} & \textcolor{g}{98.8\%} \\ \cline{2-11}
+		& 400 & \textcolor{r}{23.4\%} & \textcolor{r}{44.1\%} & \textcolor{r}{58.8\%} & \textcolor{r}{68.9\%} & \textcolor{y}{82.7\%} & \textcolor{b}{89.0\%} & \textcolor{b}{92.2\%} & \textcolor{g}{98.0\%} & \textcolor{g}{99.3\%} \\ \cline{2-11}
+		& 500 & \textcolor{r}{23.9\%} & \textcolor{r}{46.1\%} & \textcolor{r}{62.0\%} & \textcolor{y}{73.4\%} & \textcolor{b}{85.1\%} & \textcolor{b}{90.4\%} & \textcolor{b}{94.0\%} & \textcolor{g}{98.3\%} & \textcolor{g}{99.6\%} \\ \cline{2-11}
+		& 1000 & \textcolor{r}{22.2\%} & \textcolor{r}{38.9\%} & \textcolor{r}{51.0\%} & \textcolor{r}{60.4\%} & \textcolor{y}{74.1\%} & \textcolor{y}{80.8\%} & \textcolor{y}{84.3\%} & \textcolor{b}{92.6\%} & \textcolor{g}{95.5\%} \\ \hline
+		& & 250 & 500 & 750 & 1000 & 1500 & 2000 & 2500 & 5000 & 10000 \\ \hline
+		& & \multicolumn{9}{c|}{$m$} \\ \hline
+	\end{tabular}}
+	\caption{Porcentajes de éxito para las tablas que emplean patrón extenso}
+	\label{exPG}
+\end{table}
 
-Tras observar la idea general de la primera implementación de Hellman \cite{hellman} y tener en cuenta la mejora propuesta por Rivest \cite{rivest}, el ataque del arco iris lleva estos conceptos más allá, con el objetivo de mejorar los resultados obtenidos anteriormente y también adaptar estas implementaciones a las nuevas necesidades establecidas por los avances informáticos.
+Aunque en esta ocasión no se ha conseguido mejorar respecto a los resultados anteriores de las Tablas \ref{exR1R2} y \ref{expp}, sí que se aprecia un mejor rendimiento que las tablas que hacen uso de tan sólo una función de reconstrucción. A pesar de generar más tablas con malos porcentajes de éxito, el número de tablas idóneas se ha visto aumentado respecto a las Tablas \ref{exR1} y \ref{exR2}, dos de las cuales se han quedado muy cerca de romper todas las contraseñas. Puede apreciarse también algo que no había ocurrido hasta este momento. Para las tablas del arco iris de las configuraciones anteriores, aquellas que superan las 2.000 filas son, como mínimo, aceptables. Por contrario, en este caso existe una tabla con 5.000 filas con un porcentaje de éxito por debajo del 70 por ciento. También cambia el valor ideal del parámetro $t$, el cual en esta ocasión es de 500 columnas. Esto se le atribuye a el patrón establecido, ya que al desarrollarse durante ocho entradas consecutivas requiere de una profundidad de tabla mayor para obtener buenos resultados.
 
-Tras establecer el funcionamiento general en cuanto a la construcción de las tablas se refiere, el paso siguiente corresponde a determinar una o varias funciones de reconstrucción a emplear durante dicha construcción. Tras varias pruebas con diversas funciones se optó por emplear las ya explicadas \textbf{R1} y \textbf{R2}. En un principio tan sólo se iban a dar lugar dos configuraciones de tabla diferentes, empleando exclusivamente una de las funciones de reconstrucción en cada configuración. Tras la obtención de los resultados generados a raíz de implementar el ataque del arco iris con estas dos configuraciones surgió la idea de combinar ambas funciones de reconstrucción, con el objetivo en mente de reducir el número de colisiones de las tablas, permitiendo aumentar la cantidad de contraseñas cubiertas por una tabla. En cuanto a esto, la primera propuesta fue entrelazar ambas funciones (\textbf{R1 + R2}), mientras que una vez generadas estas tablas se trató de reducir todavía más las colisiones existentes, estableciendo el denominado patrón grande (\textbf{R1 + R2 + R2 + R1 + R1 + R2 + R2 + R2}), el cual consiguió reducir la cantidad de colisiones, como se muestra en la Tabla \ref{colPG}. La configuración restante con las tablas que hacen uso del denominado patrón pequeño (\textbf{R1 + R2 + R2}) se planteó una vez obtenida la primera tanda de resultados, ya que el patrón grande no fue capaz de generar mejores resultados que los obtenidos hasta ese momento.
+Al igual que en los resultados de la Tabla \ref{exR1R2}, una tabla con un mínimo de 1.500 filas daría un buen rendimiento mientras mantiene un tamaño reducido.
 
-Habiendo implementado el ataque del arco iris con un total de 370 tablas diferentes, variando las dimensiones y el uso de funciones de reconstrucción de las mismas, se ha podido observar el rendimiento en cuanto a la cantidad de contraseñas rotas se refiere.
+\section{Comparación y discusión}
 
-En una primera instancia se optó por implementar tablas con dimensiones no menores de $m =$ 1.000 filas, debido a que generar tablas con un menor número de filas habría de compensarse con una mayor profundidad para cubrir todo el dominio $N = 1.000.000$, lo cual podría resultar en un aumento notable del número de colisiones en dichas tablas. Tras realizar estos primeros ataques y obtener sus resultados en la sección \ref{primeras pruebas} es posible establecer unas primeras conclusiones sobre ellos. Para empezar, prestando atención antes que nada a la calidad de los resultados en sí, es decir, priorizando las tablas con porcentajes de éxito mayores, queda claro que la mejor combinación de funciones de reconstrucción se da empleando sucesivamente \textbf{R1} y \textbf{R2}, como puede observarse en la Tabla \ref{resR1R2}. La segunda conclusión clara que puede establecerse es que, una vez se emplean tablas de 5.000 filas o más, cualquiera de las tablas empleadas en este primer ataque consigue romper la mayoría de las contraseñas. En el caso de esta implementación en concreto, esto sucede con tal cantidad de filas debido a que el dominio $N$ no resulta ser excesivamente elevado. También cabe destacar que, aunque para estos primeros ataques se emplearon tablas llegando incluso a tener un millón de filas que cubrían todas las contraseñas o incluso superaban el dominio establecido, esta práctica no será factible en aplicaciones con un dominio mayor. El motivo de generar dichas tablas en esta ocasión fue el tratar de llegar lo más cerca posible al límite de filas. Es importante indicar que dichas tablas realmente no resultan prácticas en este ataque, ya que aunque consiguen romper todas las contraseñas almacenadas, existen otras tablas de menor tamaño con las cuales se dan los mismos resultados por lo cual serían dichas tablas más pequeñas las empleadas para realizar el ataque del arco iris, ya que se ahorraría una cantidad de tiempo considerable entre la generación de la tabla y la búsqueda de las contraseñas. Por último, es fácilmente observable que las tablas que hacen uso exclusivamente de la función de reconstrucción \textbf{R2} brindan los peores resultados, aunque sean satisfactorios en general. Esto fue un hecho sorprendente en primer lugar, ya que se esperaba que esta función de reconstrucción fuera capaz de generar tablas con menor cantidad de colisiones, lo cual no ocurrió finalmente como se puede observar en la Tabla \ref{colR2}.
+\subsection{Clasificación de las configuraciones} \label{clasificación}
 
-Tras esta primera tanda de resultados, viendo como ya se ha dicho los elevados porcentajes de éxito para tablas con al menos 5.000 filas, el foco de atención se centró en buscar las tablas de menor tamaño posible que proporcionaran resultados similares a las tablas de mayores dimensiones en cuanto a la calidad de los mismos se refiere. Para ello, se estableció el número mínimo de filas en 250, mientras que el máximo quedó en 10.000 filas. Cabe destacar que de las tablas con un número de filas reducido no se esperaba un gran rendimiento, debido a que cubrían una cantidad de contraseñas inferior a el dominio $N$. Aún así, generarlas y obtener sus resultados ha resultado ser necesario para poder establecer una frontera con claridad en las búsqueda por la tabla más eficiente de construir con mejores resultados. Habiendo alcanzado este punto no se estimó necesario establecer una nueva configuración para las tablas, por lo cual el proceso de obtención de resultados fue idéntico al empleado en la sección \ref{primeras pruebas}.
-
-Una vez generadas todas las tablas necesarias con los nuevos tamaños, antes de realizar el ataque del arco iris con cada una de ellas se optó por obtener el número de colisiones para cada una de ellas. Esto sirvió para poder reflejar una de las dos medidas de calidad de las configuraciones de las tablas, siendo la segunda de estas medidas el porcentaje de éxito. Analizando los resultados en cuanto a los porcentajes de colisiones se refiere, se aprecia que la función de reconstrucción \textbf{R2} es la peor en este aspecto de manera considerable, mientras que el patrón pequeño (Tabla \ref{colpp}) genera las tablas con el menor número de colisiones, lo cual en principio podría emplearse como argumento para predecir que estas tablas conseguirían romper la mayor cantidad de contraseñas.
-
-Tras implementar el ataque del arco iris con las nuevas tablas y representar los resultados obtenidos, de nuevo las configuraciones establecidas podrían clasificarse de la siguiente manera empleando como criterio de clasificación la cantidad de contraseñas rotas:
+Tras implementar el ataque del arco iris con las nuevas tablas haciendo uso de tamaños de tabla diferentes y representar los resultados obtenidos, las configuraciones establecidas podrían clasificarse de la siguiente manera empleando como criterio de clasificación la cantidad de contraseñas rotas:
 
 \begin{enumerate}
 
-    \item \textbf{R1 + R2}
+    \item Concatenación de funciones de reconstrucción
     
-    \item \textbf{Patrón pequeño}
+    \item Patrón reducido
     
-    \item \textbf{Patrón grande}
+    \item Patrón extenso
     
-    \item \textbf{R1}
+    \item Uso exclusivo de \textbf{R1}
     
-    \item \textbf{R2}
+    \item Uso exclusivo de \textbf{R2}
     
 \end{enumerate}
+
+\subsection{Motivos causantes de esta clasificación}
 
 Una vez observada esta clasificación de los resultados se puede tratar de establecer los motivos por los cuales se da lugar dicha clasificación para esta implementación en concreto. De entre ellos, los dos motivos con mayor peso son los siguientes:
 
 \begin{itemize}
 
-    \item \textbf{Variedad en la reconstrucción}: Como queda reflejado, emplear únicamente una función de reconstrucción brinda los peores resultados. Tras esta observación, es coherente pensar que emplear una combinación de ambas funciones asegurará un mejor rendimiento, lo cual efectivamente ocurre en este caso. A la hora de elegir una combinación de funciones de reconstrucción se ha de tener en cuenta el comportamiento de cada función por separado, siendo el porcentaje de colisiones el aspecto más importante. Esto queda reflejado si se comparan los resultados obtenidos con los dos patrones establecidos, ya que el patrón pequeño obtiene mejores resultados al hacer un menor uso de la función de reconstrucción \textbf{R2} que el patrón grande, lo cual le permite cubrir una mayor cantidad de contraseñas, aunque no tantas como al emplear sucesivamente ambas funciones (\textbf{R1 + R2}). Siendo esta última combinación la mejor de todas, queda demostrado que no se requiere una combinación más compleja para obtener mejores resultados.
+    \item \textbf{Variedad en la reconstrucción}: Como queda reflejado, emplear únicamente una función de reconstrucción brinda los peores resultados. Tras esta observación, es coherente pensar que emplear una combinación de ambas funciones asegurará un mejor rendimiento, lo cual efectivamente ocurre en este caso. A la hora de elegir una combinación de funciones de reconstrucción se ha de tener en cuenta el comportamiento de cada función por separado, siendo el porcentaje de colisiones el aspecto más importante. Esto queda reflejado si se comparan los resultados obtenidos con los dos patrones establecidos, ya que el patrón reducido obtiene mejores resultados al hacer un menor uso de la función de reconstrucción \textbf{R2} que el patrón extenso, lo cual le permite cubrir una mayor cantidad de contraseñas, aunque no tantas como al emplear sucesivamente ambas funciones (\textbf{R1 + R2}). Siendo esta última combinación la mejor de todas, queda demostrado que no se requiere una combinación más compleja para obtener mejores resultados.
     
-    \item \textbf{Colisiones en las tablas}: Aunque este aspecto por sí sólo no es el más importante, es obvio que tiene un impacto significativo a la hora de romper contraseñas. Si de hecho para obtener mejores resultados únicamente hiciera falta obtener tablas con el menor número de colisiones posible, el patrón pequeño quedaría por encima de cualquier otra de las configuraciones, ya que existe una diferencia más que notable en cuanto al porcentaje de colisiones obtenido (Tabla \ref{colpp}) respecto a las demás configuraciones. Dicho esto, la importancia de mantener un número reducido de colisiones queda reflejada en las tablas que hacen uso exclusivamente de la función de reconstrucción \textbf{R2} (Tabla \ref{colR2}), ya que dichas tablas son las que poseen un mayor número de colisiones y a la vez presentan los peores resultados (Tabla \ref{exR2}). La clave del éxito de una tabla en cuanto a su porcentaje de colisiones se refiere reside en ser capaz de cubrir un rango suficiente de contraseñas aún teniendo colisiones que reduzcan dicho rango.
+    \item \textbf{Colisiones en las tablas}: Aunque este aspecto por sí sólo no es el más importante, es obvio que tiene un impacto significativo a la hora de romper contraseñas. Si de hecho para obtener mejores resultados únicamente hiciera falta obtener tablas con el menor número de colisiones posible, el patrón reducido quedaría por encima de cualquier otra de las configuraciones, ya que existe una diferencia más que notable en cuanto al porcentaje de colisiones obtenido (Tabla \ref{colpp}) respecto a las demás configuraciones. Dicho esto, la importancia de mantener un número reducido de colisiones queda reflejada en las tablas que hacen uso exclusivamente de la función de reconstrucción \textbf{R2} (Tabla \ref{colR2}), ya que dichas tablas son las que poseen un mayor número de colisiones y a la vez presentan los peores resultados (Tabla \ref{exR2}). La clave del éxito de una tabla en cuanto a su porcentaje de colisiones se refiere reside en ser capaz de cubrir un rango suficiente de contraseñas aún teniendo colisiones que reduzcan dicho rango.
     
 \end{itemize}
 
@@ -1136,7 +1082,45 @@ Otro aspecto que resulta también importante aunque no lo es tanto que los anter
 
 La estructura de datos empleada para representar la tabla también resulta una decisión importante, aunque el grado de importancia dependerá del tamaño del dominio de contraseñas que se pretende atacar. En la implementación aquí presentada, al ser el dominio de un tamaño considerado pequeño, incluso las tablas más grandes no han llegado a tardar más de tres minutos tanto en su generación como al atacar las contraseñas, por lo cual no se ha requerido buscar la mayor eficiencia posible. En el caso de realizar el ataque contra un dominio de contraseñas de tamaño considerable, el cual con la implementación actual pudiera multiplicar los tiempos requeridos, se habría de fijar como objetivo adicional encontrar la estructura de datos más eficiente. De nuevo, esto entra dentro de la escalabilidad del ataque del arco iris, ya que por mucho que la estructura de datos varíe, la forma de llevar a cabo el ataque permanecerá siendo la misma.
 
-Tras todo esto, la efectividad del ataque del arco iris debería haber quedado suficientemente clara. Siempre que se realice el ataque frente a un sistema que almacene valores \hash~de las contraseñas originales mediante el uso de una función \hash~que no utilice técnicas como el \textit{salting} o el estiramiento de contraseñas (explicados en la sección \ref{salt}), las tablas del arco iris serán capaces de adivinar la gran mayoría de las contraseñas. Una de las claves para dicho éxito recae en emplear funciones de reconstrucción adecuadas, para lo cual es necesario dedicar el tiempo adecuado a la experimentación con diversas de estas funciones, así como los diferentes parámetros que configuran una tabla en concreto. Como ha sido siempre habitual en la criptografía, a medida que se han ido reforzando las medidas de seguridad frente a ataque informáticos también se ha conseguido mejorar la efectividad de los mismos, lo cual motiva a un refuerzo mayor de la seguridad de los sistemas, formando un ciclo el cual continúa hoy en día. Si bien como ya se ha dicho, actualmente resulta sencillo inutilizar el ataque del arco iris, todavía existen sistemas que siguen siendo vulnerables a sus tablas, como por ejemplo todos los sistemas operativos de Microsoft Windows hasta llegar a Windows 7. También, aunque el objetivo principal del ataque del arco iris siempre es romper las máximas contraseñas posibles, se le puede dar un uso diferente, el cual consiste en atacar dos funciones \hash diferentes haciendo uso de la misma configuración de tablas del arco iris, para así poder comparar de seguridad de ambas funciones. Esto puede ser útil en aquellos casos en los cuales por especificaciones de diseño u otros motivos no sea posible hacer uso del \textit{salting} o el estiramiento. Incluso se podría hacer uso de una implementación en particular del ataque del arco iris para comparar la eficiencia de diferentes estructuras de datos, ya que estarán sometidas a las mismas operaciones. Todos estos aspectos sirven para observar que, aunque en un principio es normal pensar en el ataque del arco iris como un ataque informático más, se le puede dar diferentes usos dependiendo del objetivo que se esté tratando de cumplir.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                                 CONCLUSIONES                                 %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\chapter{Conclusiones}
+
+Tras observar la idea general de la primera implementación de Hellman \cite{hellman} y tener en cuenta pero finalmente no aplicar la mejora propuesta por Rivest \cite{rivest}, el ataque del arco iris lleva estos conceptos más allá, con el objetivo de mejorar los resultados obtenidos anteriormente y también adaptar estas implementaciones a las nuevas necesidades establecidas por los avances informáticos.
+
+Tras establecer el funcionamiento general en cuanto a la construcción de las tablas se refiere, el paso siguiente corresponde a determinar una o varias funciones de reconstrucción a emplear durante dicha construcción. Tras varias pruebas con diversas funciones se optó por emplear inicialmente la función \textbf{R1}, la cual proporcionó resultados bastante satisfactorios. Tras ello, surgió la duda de si esta función no era la ideal para este ataque, por lo cual se pasó a emplear la segunda función de reconstrucción \textbf{R2}, la cual no consiguió mejorar los resultados obtenidos anteriormente por la función \textbf{R1}. En un principio tan sólo se iban a dar lugar dos configuraciones de tabla diferentes, empleando exclusivamente una de las funciones de reconstrucción en cada configuración. Tras la obtención de los resultados generados a raíz de implementar el ataque del arco iris con estas dos configuraciones surgió la idea de combinar ambas funciones de reconstrucción, con el objetivo en mente de reducir el número de colisiones de las tablas, permitiendo aumentar la cantidad de contraseñas cubiertas por una tabla. En cuanto a esto, la primera propuesta fue entrelazar ambas funciones (\textbf{R1 + R2}), mientras que una vez generadas estas tablas se trató de reducir todavía más las colisiones existentes mediante el uso de patrones más complejos. El primero de estos añadía únicamente un paso más (\textbf{R1 + R2 + R2}), mientras que el segundo resultó ser más complejo (\textbf{R1 + R2 + R2 + R1 + R1 + R2 + R2 + R2}). De esta manera es establecieron los denominados patrones reducido y extenso respectivamente, los cuales consiguieron con éxito reducir la cantidad de colisiones en sus tablas respecto a las demás configuraciones.
+
+Habiendo implementado el ataque del arco iris con un total de 370 tablas diferentes, variando las dimensiones y el uso de funciones de reconstrucción de las mismas, se ha podido observar el rendimiento en cuanto a la cantidad de contraseñas rotas se refiere.
+
+En una primera instancia se optó por implementar tablas con dimensiones no menores de $m =$ 1.000 filas, debido a que generar tablas con un menor número de filas habría de compensarse con una mayor profundidad para cubrir todo el dominio $N = $1.000.000, lo cual podría resultar en un aumento notable del número de colisiones en dichas tablas. Tras realizar estos primeros ataques empleando los tamaños de tabla iniciales con las cinco configuraciones distintas y obtener sus resultados, es posible establecer unas primeras conclusiones sobre ellos. Para empezar, prestando atención antes que nada a la calidad de los resultados en sí, es decir, priorizando las tablas con porcentajes de éxito mayores, queda claro que la mejor combinación de funciones de reconstrucción se da empleando sucesivamente \textbf{R1} y \textbf{R2}, como puede observarse en la Tabla \ref{resR1R2}. La segunda conclusión clara que puede establecerse es que, una vez se emplean tablas de 5.000 filas o más, cualquiera de las tablas empleadas en este primer ataque consigue romper la mayoría de las contraseñas. En el caso de esta implementación en concreto, esto sucede con tal cantidad de filas debido a que el dominio $N$ no resulta ser excesivamente elevado. También cabe destacar que, aunque para estos primeros ataques se emplearon tablas llegando incluso a tener un millón de filas que cubrían todas las contraseñas o incluso superaban el dominio establecido, esta práctica no será factible en aplicaciones con un dominio mayor. El motivo de generar dichas tablas en esta ocasión fue el tratar de llegar lo más cerca posible al límite de filas. Es importante indicar que dichas tablas realmente no resultan prácticas en este ataque, ya que aunque consiguen romper todas las contraseñas almacenadas, existen otras tablas de menor tamaño con las cuales se dan los mismos resultados por lo cual serían dichas tablas más pequeñas las empleadas para realizar el ataque del arco iris, ya que se ahorraría una cantidad de tiempo considerable entre la generación de la tabla y la búsqueda de las contraseñas. Por último, es fácilmente observable que las tablas que hacen uso exclusivamente de la función de reconstrucción \textbf{R2} brindan los peores resultados, aunque sean satisfactorios en general. Esto fue un hecho sorprendente en primer lugar, ya que se esperaba que esta función de reconstrucción fuera capaz de generar tablas con menor cantidad de colisiones, lo cual no ocurrió finalmente como se puede observar en la Tabla \ref{colR2}.
+
+Tras esta primera tanda de resultados, viendo como ya se ha dicho los elevados porcentajes de éxito para tablas con al menos 5.000 filas, el foco de atención se centró en buscar las tablas de menor tamaño posible que proporcionaran resultados similares a las tablas de mayores dimensiones en cuanto a la calidad de los mismos se refiere. Para ello, se estableció el número mínimo de filas en 250, mientras que el máximo quedó en 10.000 filas. Cabe destacar que de las tablas con un número de filas reducido no se esperaba un gran rendimiento, debido a que cubrían una cantidad de contraseñas inferior a el dominio $N$. Aún así, generarlas y obtener sus resultados ha resultado ser necesario para poder establecer una frontera con claridad en las búsqueda por la tabla más eficiente de construir con mejores resultados. Habiendo alcanzado este punto no se estimó necesario establecer una nueva configuración para las tablas, por lo cual el proceso de obtención de resultados fue idéntico al empleado en el apartado \ref{primeras pruebas}.
+
+Una vez generadas todas las tablas necesarias con los nuevos tamaños, antes de realizar el ataque del arco iris con cada una de ellas se optó por obtener su número de colisiones. Esto sirvió para poder reflejar una de las dos medidas de calidad de las configuraciones de las tablas, siendo la segunda de estas medidas el porcentaje de éxito. Analizando los resultados en cuanto a los porcentajes de colisiones se refiere, se aprecia que la función de reconstrucción \textbf{R2} es la peor en este aspecto de manera considerable, mientras que el patrón reducido (Tabla \ref{colpp}) genera las tablas con el menor número de colisiones, lo cual en principio podría emplearse como argumento para predecir que estas tablas conseguirían romper la mayor cantidad de contraseñas.
+
+Finalmente, una vez implementado el ataque del arco iris empleando las tablas con los nuevos tamaños establecidos en el apartado \ref{nuevos_tamaños} y habiendo representado los resultados generados, de nuevo las configuraciones establecidas podrían clasificarse de la siguiente manera empleando como criterio de clasificación la cantidad de contraseñas rotas:
+
+\begin{enumerate}
+
+    \item Concatenación de funciones de reconstrucción
+    
+    \item Patrón reducido
+    
+    \item Patrón extenso
+    
+    \item Uso exclusivo de \textbf{R1}
+    
+    \item Uso exclusivo de \textbf{R2}
+    
+\end{enumerate}
+
+En el apartado \ref{clasificación} ya han sido establecidos los motivos por los cuales se da lugar dicha clasificación en la implementación desarrollada para este proyecto. Con todo, los resultados de todas las configuraciones distintas han sido satisfactorios, a la vez que han servido para reflejar la importancia de los diferentes factores de las tablas del arco iris a tener en cuenta, especialmente las dimensiones y el porcentaje de colisiones de las mismas.
+
+Como trabajo futuro queda pendiente, además de la incesante búsqueda de la función de reconstrucción ideal, realizar la implementación propuesta por Rivest \cite{rivest}, con el objetivo de comprobar si, en este caso, consigue mejorar los resultados obtenidos. También resultaría interesante lanzar este ataque contra una función resumen que ofrezca mayor seguridad que la función CRC-32, así como empleando un dominio de contraseñas de mayor tamaño, viendo de esta forma si la implementación continúa obteniendo resultados parecidos a los aquí vistos.
+
+Tras todo esto, se espera que la efectividad del ataque del arco iris haya quedado suficientemente clara. Siempre que se realice el ataque frente a un sistema que almacene valores \hash~de las contraseñas originales mediante el uso de una función \hash~que no utilice técnicas como el \textit{salting} o el estiramiento de contraseñas (explicados en la sección \ref{salt}), las tablas del arco iris serán capaces de adivinar la gran mayoría de las contraseñas. Una de las claves para dicho éxito recae en emplear funciones de reconstrucción adecuadas, para lo cual es necesario dedicar el tiempo adecuado a la experimentación con diversas de estas funciones, así como los diferentes parámetros que configuran una tabla en concreto. Como ha sido siempre habitual en la criptografía, a medida que se han ido reforzando las medidas de seguridad frente a ataque informáticos también se ha conseguido mejorar la efectividad de los mismos, lo cual motiva a un refuerzo mayor de la seguridad de los sistemas, formando un ciclo el cual continúa hoy en día. Si bien como ya se ha dicho, actualmente resulta sencillo inutilizar el ataque del arco iris, todavía existen sistemas que siguen siendo vulnerables a sus tablas, como por ejemplo todos los sistemas operativos de Microsoft \textit{Windows} hasta llegar a \textit{Windows} 7. También, aunque el objetivo principal del ataque del arco iris siempre es romper las máximas contraseñas posibles, se le puede dar un uso diferente, el cual consiste en atacar dos funciones \hash~diferentes haciendo uso de la misma configuración de tablas del arco iris, para así poder comparar de seguridad de ambas funciones. Esto puede ser útil en aquellos casos en los cuales por especificaciones de diseño u otros motivos no sea posible hacer uso del \textit{salting} o el estiramiento. Incluso se podría hacer uso de una implementación en particular del ataque del arco iris para comparar la eficiencia de diferentes estructuras de datos, ya que estarán sometidas a las mismas operaciones. Todos estos aspectos sirven para observar que, aunque en un principio es normal pensar en el ataque del arco iris como un ataque informático más, se le puede dar diferentes usos dependiendo del objetivo que se esté tratando de cumplir.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                                BIBLIOGRAFÍA                                 %

@@ -53,7 +53,11 @@
 \contentsline {subsection}{\numberline {4.4.2}Una combinaci\IeC {\'o}n algo m\IeC {\'a}s compleja}{25}{subsection.4.4.2}
 \contentsline {subsection}{\numberline {4.4.3}La combinaci\IeC {\'o}n final, la m\IeC {\'a}s compleja}{26}{subsection.4.4.3}
 \contentsline {section}{\numberline {4.5}En busca de la configuraci\IeC {\'o}n perfecta}{27}{section.4.5}
-\contentsline {section}{\numberline {4.6}Comparaci\IeC {\'o}n y discusi\IeC {\'o}n}{31}{section.4.6}
-\contentsline {section}{\numberline {4.7}Resultados finales}{31}{section.4.7}
-\contentsline {chapter}{\numberline {5}Conclusiones}{37}{chapter.5}
+\contentsline {subsection}{\numberline {4.5.1}Nuevos tama\IeC {\~n}os}{27}{subsection.4.5.1}
+\contentsline {subsection}{\numberline {4.5.2}Colisiones de las nuevas tablas}{27}{subsection.4.5.2}
+\contentsline {section}{\numberline {4.6}Resultados finales}{31}{section.4.6}
+\contentsline {section}{\numberline {4.7}Comparaci\IeC {\'o}n y discusi\IeC {\'o}n}{35}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}Clasificaci\IeC {\'o}n de las configuraciones}{35}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}Motivos causantes de esta clasificaci\IeC {\'o}n}{36}{subsection.4.7.2}
+\contentsline {chapter}{\numberline {5}Conclusiones}{39}{chapter.5}
 \contentsline {chapter}{Bibliograf\'{\i }a}{43}{chapter*.23}
