@@ -325,9 +325,11 @@
 \vspace*{2cm}
 \begin{color}{grisfosc}
 \large
-Escola T\`ecnica Superior d'Enginyeria Inform\`atica
+%Escola T\`ecnica Superior d'Enginyeria Inform\`atica
+Escuela Técnica Superior de Ingeniería Informática
 
-Universitat Polit\`ecnica de Val\`encia
+Universidad Politécnica de Valencia
+%Universitat Polit\`ecnica de Val\`encia
 \end{color}
 \vspace{\stretch{1}}
 
