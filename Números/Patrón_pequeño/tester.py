@@ -1,8 +1,34 @@
 import rainbow_num_Patrón_pequeño_tester
 
 if __name__ == '__main__':
-    #filas = [250, 500, 750, 1000, 1500, 2000, 2500, 5000, 10000]
-    #columnas = [50, 100, 200, 400, 500, 1000]
+    filas = [250, 500, 750, 1000, 1500, 2000, 2500, 5000, 10000]
+    columnas = [50, 100, 200, 400, 500, 1000]
+
+    for fila in filas:
+        for columna in columnas:
+            print('%d x %d' % (fila, columna))
+            rainbow_num_Patrón_pequeño_tester.busq(fila, columna)
+            
+"""
+    for columna in [1000]:
+        print('%d x %d' % (1000, columna))
+        rainbow_num_Patrón_pequeño_tester.busq(1000, columna)
+
+    for columna in [500]:
+        print('%d x %d' % (2000, columna))
+        rainbow_num_Patrón_pequeño_tester.busq(2000, columna)
+
+    for columna in [400]:
+        print('%d x %d' % (2500, columna))
+        rainbow_num_Patrón_pequeño_tester.busq(2500, columna)
+
+    for columna in [200]:
+        print('%d x %d' % (5000, columna))
+        rainbow_num_Patrón_pequeño_tester.busq(5000, columna)
+
+    for columna in [100]:
+        print('%d x %d' % (10000, columna))
+        rainbow_num_Patrón_pequeño_tester.busq(10000, columna)
 
     for columna in [50, 100]:
         print('%d x %d' % (20000, columna))
@@ -35,4 +61,4 @@ if __name__ == '__main__':
     for columna in [1, 50, 100]:
         print('%d x %d' % (1000000, columna))
         rainbow_num_Patrón_pequeño_tester.busq(1000000, columna)
-
+"""

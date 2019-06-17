@@ -15,6 +15,23 @@ Martin Hellman.
 \newblock A cryptanalytic time-memory trade-off.
 \newblock {\em IEEE transactions on Information Theory}, 26(4):401--406, 1980.
 
+\bibitem{knapsack}
+Ralph Merkle and Martin Hellman.
+\newblock Hiding information and signatures in trapdoor knapsacks.
+\newblock {\em IEEE transactions on Information Theory}, 24(5):525--530, 1978.
+
+\bibitem{logarithm}
+Stephen Pohlig and Martin Hellman.
+\newblock An improved algorithm for computing logarithms over gf (p) and its
+  cryptographic significance (corresp.).
+\newblock {\em IEEE Transactions on information Theory}, 24(1):106--110, 1978.
+
+\bibitem{DES}
+Whitfield Diffie and Martin~E Hellman.
+\newblock Special feature exhaustive cryptanalysis of the nbs data encryption
+  standard.
+\newblock {\em Computer}, 10(6):74--84, 1977.
+
 \bibitem{rainbow}
 Philippe Oechslin.
 \newblock Making a faster cryptanalytic time-memory trade-off.

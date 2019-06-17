@@ -1,0 +1,29 @@
+\begin{thebibliography}{1}
+
+\bibitem{handbook}
+Jonathan Katz, Alfred~J Menezes, Paul~C Van~Oorschot, and Scott~A Vanstone.
+\newblock {\em Handbook of applied cryptography}.
+\newblock CRC press, 1996.
+
+\bibitem{birthday}
+Mario~Cortina Borja and John Haigh.
+\newblock The birthday problem.
+\newblock {\em Significance}, 4(3):124--127, 2007.
+
+\bibitem{hellman}
+Martin Hellman.
+\newblock A cryptanalytic time-memory trade-off.
+\newblock {\em IEEE transactions on Information Theory}, 26(4):401--406, 1980.
+
+\bibitem{rainbow}
+Philippe Oechslin.
+\newblock Making a faster cryptanalytic time-memory trade-off.
+\newblock In {\em Annual International Cryptology Conference}, pages 617--630.
+  Springer, 2003.
+
+\bibitem{rivest}
+Dorothy~Elizabeth Robling~Denning.
+\newblock {\em Cryptography and data security}.
+\newblock page 100, Addison-Wesley Longman Publishing Co., Inc., 1982.
+
+\end{thebibliography}

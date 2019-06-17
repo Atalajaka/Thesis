@@ -106,6 +106,50 @@ def busq(filas, columnas):
                     else:
                         patron = 1
 
+                if (not aux):
+                    h = p
+                    patron = 1
+                    for i in range(pf):
+                        if (patron == 3):
+                            r = str(h % 1000000)
+
+                        else:
+                            r = r2(h)
+
+                        h = crc32(bytes(r, 'ascii'))
+                        if ((h in hashes) and (h not in cr)):
+                            col += 1
+                            aux = [v for v in hashes if v == h]
+                            cr += aux
+                            break
+
+                        if (patron < 3):
+                            patron += 1
+                        else:
+                            patron = 1
+
+                if (not aux):
+                    h = p
+                    patron = 1
+                    for i in range(pf):
+                        if (patron == 2):
+                            r = str(h % 1000000)
+
+                        else:
+                            r = r2(h)
+
+                        h = crc32(bytes(r, 'ascii'))
+                        if ((h in hashes) and (h not in cr)):
+                            col += 1
+                            aux = [v for v in hashes if v == h]
+                            cr += aux
+                            break
+
+                        if (patron < 3):
+                            patron += 1
+                        else:
+                            patron = 1
+
         #print('\n\n\nNúmero de contraseñas encontradas = %d' % col)
         print('\nPorcentaje de éxito = %.1f%s\n' % (((col/len(ps)) * 100), chr(37)))
         #print('Tiempo transcurrido = %s\n' % (datetime.now() - start))
