@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{handbook}
+Jonathan Katz, Alfred~J Menezes, Paul~C Van~Oorschot, and Scott~A Vanstone.
+\newblock {\em Handbook of applied cryptography}.
+\newblock CRC press, 1996.
+
 \bibitem{hellman}
 Martin Hellman.
 \newblock A cryptanalytic time-memory trade-off.

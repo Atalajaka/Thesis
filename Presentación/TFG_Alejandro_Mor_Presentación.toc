@@ -1,11 +1,6 @@
 \babel@toc {spanish}{}
-\beamer@sectionintoc {1}{\IeC {\'I}ntroducci\IeC {\'o}n}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Criptograf\IeC {\'\i }a}{4}{0}{1}
-\beamer@subsectionintoc {1}{2}{Funciones resumen}{5}{0}{1}
-\beamer@sectionintoc {2}{B\IeC {\'u}squeda de colisiones}{6}{0}{2}
-\beamer@subsectionintoc {2}{1}{Algoritmo de Yuval}{7}{0}{2}
-\beamer@sectionintoc {3}{El ataque del arco iris}{8}{0}{3}
-\beamer@sectionintoc {4}{Experimentaci\IeC {\'o}n}{8}{0}{4}
-\beamer@sectionintoc {5}{Discusi\IeC {\'o}n de resultados}{8}{0}{5}
-\beamer@sectionintoc {6}{Conclusiones}{9}{0}{6}
-\beamer@sectionintoc {7}{Referencias}{9}{0}{7}
+\beamer@sectionintoc {1}{Introducci\IeC {\'o}n}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{Funciones resumen}{3}{0}{1}
+\beamer@sectionintoc {2}{El ataque del arco iris}{5}{0}{2}
+\beamer@sectionintoc {3}{Estudio experimental}{12}{0}{3}
+\beamer@sectionintoc {4}{Conclusiones}{32}{0}{4}
