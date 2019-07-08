@@ -1,6 +1,5 @@
 \babel@toc {spanish}{}
 \beamer@sectionintoc {1}{Introducci\IeC {\'o}n}{3}{0}{1}
-\beamer@subsectionintoc {1}{1}{Funciones resumen}{3}{0}{1}
 \beamer@sectionintoc {2}{El ataque del arco iris}{5}{0}{2}
 \beamer@sectionintoc {3}{Estudio experimental}{12}{0}{3}
 \beamer@sectionintoc {4}{Conclusiones}{32}{0}{4}

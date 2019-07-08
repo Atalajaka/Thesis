@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.8)  5 JUL 2019 10:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.5.8)  8 JUL 2019 17:00
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1216,17 +1216,17 @@ LaTeX Info: Redefining \% on input line 1.
 [2
 
 ]
-LaTeX Font Info:    Try loading font information for U+msa on input line 65.
+LaTeX Font Info:    Try loading font information for U+msa on input line 63.
  (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 65.
+LaTeX Font Info:    Try loading font information for U+msb on input line 63.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Try loading font information for OT1+mathkerncmss on input 
-line 65.
+line 63.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2013/03/27 Fontinst v1.933 font definitions for OT1/ma
@@ -1241,10 +1241,10 @@ thkerncmss.
 ] [6
 
 ]
-<rainbow_2.png, id=223, 1675.25874pt x 710.655pt>
+<rainbow_2.png, id=214, 1675.25874pt x 710.655pt>
 File: rainbow_2.png Graphic file (type png)
 <use rainbow_2.png>
-Package pdftex.def Info: rainbow_2.png  used on input line 132.
+Package pdftex.def Info: rainbow_2.png  used on input line 130.
 (pdftex.def)             Requested size: 335.0458pt x 142.12848pt.
  [7
 
@@ -1268,7 +1268,7 @@ Package pdftex.def Info: rainbow_2.png  used on input line 132.
 [16
 
 ]
-Overfull \vbox (11.5943pt too high) detected at line 195
+Overfull \vbox (11.5943pt too high) detected at line 193
  []
 
 [17
@@ -1276,55 +1276,55 @@ Overfull \vbox (11.5943pt too high) detected at line 195
 ] [18
 
 ]
-Overfull \vbox (11.5943pt too high) detected at line 231
+Overfull \vbox (11.5943pt too high) detected at line 229
  []
 
 [19
 
 ]
-Overfull \vbox (11.5943pt too high) detected at line 260
+Overfull \vbox (11.5943pt too high) detected at line 258
  []
 
 [20
 
 ]
-<filaR1R2.png, id=617, 1435.3625pt x 92.345pt>
+<filaR1R2.png, id=610, 1435.3625pt x 92.345pt>
 File: filaR1R2.png Graphic file (type png)
 <use filaR1R2.png>
-Package pdftex.def Info: filaR1R2.png  used on input line 266.
+Package pdftex.def Info: filaR1R2.png  used on input line 264.
 (pdftex.def)             Requested size: 287.06741pt x 18.46866pt.
  [21
 
  <./filaR1R2.png>]
-Overfull \vbox (21.64986pt too high) detected at line 295
+Overfull \vbox (21.64986pt too high) detected at line 293
  []
 
 [22
 
 ]
-<filapp.png, id=675, 1621.05624pt x 89.33376pt>
+<filapp.png, id=667, 1621.05624pt x 89.33376pt>
 File: filapp.png Graphic file (type png)
 <use filapp.png>
-Package pdftex.def Info: filapp.png  used on input line 301.
+Package pdftex.def Info: filapp.png  used on input line 299.
 (pdftex.def)             Requested size: 324.2055pt x 17.86642pt.
  [23
 
  <./filapp.png>]
-Overfull \vbox (30.77441pt too high) detected at line 330
+Overfull \vbox (30.77441pt too high) detected at line 328
  []
 
 [24
 
 ]
-<filaPG.png, id=731, 1601.985pt x 352.31625pt>
+<filaPG.png, id=724, 1601.985pt x 352.31625pt>
 File: filaPG.png Graphic file (type png)
 <use filaPG.png>
-Package pdftex.def Info: filaPG.png  used on input line 336.
+Package pdftex.def Info: filaPG.png  used on input line 334.
 (pdftex.def)             Requested size: 320.39133pt x 70.46199pt.
  [25
 
  <./filaPG.png>]
-Overfull \vbox (19.49127pt too high) detected at line 365
+Overfull \vbox (19.49127pt too high) detected at line 363
  []
 
 [26
@@ -1355,27 +1355,27 @@ Overfull \vbox (19.49127pt too high) detected at line 365
 \tf@snm=\write8
 \openout8 = `TFG_Alejandro_Mor_Presentación.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 647.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 647.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 645.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 645.
 
 (./TFG_Alejandro_Mor_Presentación.aux
 LaTeX Info: Redefining \. on input line 23.
 LaTeX Info: Redefining \% on input line 23.
 )
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 647.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 647.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 645.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 645.
 Package rerunfilecheck Info: File `TFG_Alejandro_Mor_Presentación.out' has not
  changed.
-(rerunfilecheck)             Checksum: 0237DB72A78B966CC5DA8CA7762884F7;311.
+(rerunfilecheck)             Checksum: 97D3A2ACAC5A8D6B437A1558E5AD3F63;245.
  ) 
 Here is how much of TeX's memory you used:
- 18590 strings out of 492982
- 344860 string characters out of 6134897
- 463741 words of memory out of 5000000
- 21628 multiletter control sequences out of 15000+600000
+ 18567 strings out of 492982
+ 344173 string characters out of 6134897
+ 463738 words of memory out of 5000000
+ 21606 multiletter control sequences out of 15000+600000
  17547 words of font info for 63 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 56i,16n,62p,835b,818s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,16n,61p,835b,818s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmss12.pfb></usr/share/texl
@@ -1389,11 +1389,11 @@ amsfonts/cm/cmssi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/
 cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/latxfont/l
 ine10.pfb>
-Output written on TFG_Alejandro_Mor_Presentación.pdf (34 pages, 372493 bytes).
+Output written on TFG_Alejandro_Mor_Presentación.pdf (34 pages, 372064 bytes).
 
 PDF statistics:
- 1074 PDF objects out of 1200 (max. 8388607)
- 1001 compressed objects within 11 object streams
- 86 named destinations out of 1000 (max. 500000)
- 123 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1066 PDF objects out of 1200 (max. 8388607)
+ 994 compressed objects within 10 object streams
+ 85 named destinations out of 1000 (max. 500000)
+ 115 words of extra memory for PDF output out of 10000 (max. 10000000)
 
