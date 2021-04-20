@@ -1,16 +1,16 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {algorithm}{\numberline {2.1}{\ignorespaces Algoritmo de Yuval aplicando el ataque del cumplea\IeC {\~n}os\relax }}{8}{algorithm.2.1}
-\contentsline {algorithm}{\numberline {2.2}{\ignorespaces Algoritmo de generaci\IeC {\'o}n de tablas de Hellman en su TMTO\relax }}{11}{algorithm.2.2}
-\contentsline {algorithm}{\numberline {2.3}{\ignorespaces Algoritmo de b\IeC {\'u}squeda de claves de Hellman en su TMTO\relax }}{12}{algorithm.2.3}
+\contentsline {algorithm}{\numberline {2.1}{\ignorespaces Algoritmo de Yuval aplicando el ataque del cumpleaños\relax }}{8}{algorithm.2.1}%
+\contentsline {algorithm}{\numberline {2.2}{\ignorespaces Algoritmo de generación de tablas de Hellman en su TMTO\relax }}{11}{algorithm.2.2}%
+\contentsline {algorithm}{\numberline {2.3}{\ignorespaces Algoritmo de búsqueda de claves de Hellman en su TMTO\relax }}{12}{algorithm.2.3}%
 \addvspace {10\p@ }
-\contentsline {algorithm}{\numberline {3.1}{\ignorespaces Algoritmo de b\IeC {\'u}squeda de colisiones en tablas del arco iris\relax }}{16}{algorithm.3.1}
+\contentsline {algorithm}{\numberline {3.1}{\ignorespaces Algoritmo de búsqueda de colisiones en tablas del arco iris\relax }}{16}{algorithm.3.1}%
 \addvspace {10\p@ }
-\contentsline {algorithm}{\numberline {4.1}{\ignorespaces Algoritmo de generaci\IeC {\'o}n de tablas del arco iris\relax }}{22}{algorithm.4.1}
-\contentsline {algorithm}{\numberline {4.2}{\ignorespaces Algoritmo de generaci\IeC {\'o}n de tablas del arco iris que alternan las funciones de reconstrucci\IeC {\'o}n\relax }}{29}{algorithm.4.2}
-\contentsline {algorithm}{\numberline {4.3}{\ignorespaces Algoritmo de b\IeC {\'u}squeda de colisiones en tablas del arco iris que alternan las funciones de reconstrucci\IeC {\'o}n\relax }}{30}{algorithm.4.3}
-\contentsline {algorithm}{\numberline {4.4}{\ignorespaces Algoritmo de generaci\IeC {\'o}n de tablas del arco iris que emplean el patr\IeC {\'o}n reducido de funciones de reconstrucci\IeC {\'o}n\relax }}{32}{algorithm.4.4}
-\contentsline {algorithm}{\numberline {4.5}{\ignorespaces Algoritmo de b\IeC {\'u}squeda de colisiones en tablas del arco iris que emplean el patr\IeC {\'o}n reducido de funciones de reconstrucci\IeC {\'o}n\relax }}{33}{algorithm.4.5}
-\contentsline {algorithm}{\numberline {4.6}{\ignorespaces Algoritmo de generaci\IeC {\'o}n de tablas del arco iris que emplean el patr\IeC {\'o}n extenso de funciones de reconstrucci\IeC {\'o}n\relax }}{35}{algorithm.4.6}
-\contentsline {algorithm}{\numberline {4.7}{\ignorespaces Algoritmo de b\IeC {\'u}squeda de colisiones en tablas del arco iris que emplean el patr\IeC {\'o}n extenso de funciones de reconstrucci\IeC {\'o}n\relax }}{36}{algorithm.4.7}
+\contentsline {algorithm}{\numberline {4.1}{\ignorespaces Algoritmo de generación de tablas del arco iris\relax }}{22}{algorithm.4.1}%
+\contentsline {algorithm}{\numberline {4.2}{\ignorespaces Algoritmo de generación de tablas del arco iris que alternan las funciones de reconstrucción\relax }}{29}{algorithm.4.2}%
+\contentsline {algorithm}{\numberline {4.3}{\ignorespaces Algoritmo de búsqueda de colisiones en tablas del arco iris que alternan las funciones de reconstrucción\relax }}{30}{algorithm.4.3}%
+\contentsline {algorithm}{\numberline {4.4}{\ignorespaces Algoritmo de generación de tablas del arco iris que emplean el patrón reducido de funciones de reconstrucción\relax }}{32}{algorithm.4.4}%
+\contentsline {algorithm}{\numberline {4.5}{\ignorespaces Algoritmo de búsqueda de colisiones en tablas del arco iris que emplean el patrón reducido de funciones de reconstrucción\relax }}{33}{algorithm.4.5}%
+\contentsline {algorithm}{\numberline {4.6}{\ignorespaces Algoritmo de generación de tablas del arco iris que emplean el patrón extenso de funciones de reconstrucción\relax }}{35}{algorithm.4.6}%
+\contentsline {algorithm}{\numberline {4.7}{\ignorespaces Algoritmo de búsqueda de colisiones en tablas del arco iris que emplean el patrón extenso de funciones de reconstrucción\relax }}{36}{algorithm.4.7}%
 \addvspace {10\p@ }

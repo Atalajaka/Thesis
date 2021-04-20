@@ -5,57 +5,57 @@
 \babel@toc {spanish}{}
 \babel@toc {english}{}
 \babel@toc {spanish}{}
-\contentsline {chapter}{\'{I}ndice general}{\es@scroman {v}}{section*.1}
-\contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {vii}}{section*.2}
-\contentsline {chapter}{\'Indice de tablas}{\es@scroman {vii}}{section*.3}
-\contentsline {chapter}{\'Indice de algoritmos}{\es@scroman {viii}}{section*.4}
+\contentsline {chapter}{\'{I}ndice general}{\es@scroman {v}}{section*.1}%
+\contentsline {chapter}{\'{I}ndice de figuras}{\es@scroman {vii}}{section*.2}%
+\contentsline {chapter}{\'Indice de tablas}{\es@scroman {vii}}{section*.3}%
+\contentsline {chapter}{\'Indice de algoritmos}{\es@scroman {viii}}{section*.4}%
 \noindent \hrulefill \par 
-\contentsline {chapter}{\numberline {1}Introducci\'on}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}La criptograf\IeC {\'\i }a como piedra angular}{1}{section.1.1}
-\contentsline {section}{\numberline {1.2}Caracter\IeC {\'\i }sticas y usos de las funciones resumen}{2}{section.1.2}
-\contentsline {subsection}{\numberline {1.2.1}Definici\IeC {\'o}n}{2}{subsection.1.2.1}
-\contentsline {subsection}{\numberline {1.2.2}Propiedades}{2}{subsection.1.2.2}
-\contentsline {subsection}{\numberline {1.2.3}Usos habituales}{3}{subsection.1.2.3}
-\contentsline {section}{\numberline {1.3}Motivaci\'on}{4}{section.1.3}
-\contentsline {section}{\numberline {1.4}Objetivos}{4}{section.1.4}
-\contentsline {section}{\numberline {1.5}Estructura de la memoria}{5}{section.1.5}
-\contentsline {chapter}{\numberline {2}Aproximaciones en la b\IeC {\'u}squeda de colisiones en funciones resumen}{7}{chapter.2}
-\contentsline {section}{\numberline {2.1}La paradoja del cumplea\IeC {\~n}os}{7}{section.2.1}
-\contentsline {subsection}{\numberline {2.1.1}El algoritmo de Yuval aplicado al ataque del cumplea\IeC {\~n}os}{8}{subsection.2.1.1}
-\contentsline {section}{\numberline {2.2}\textit {Time-memory trade-off}}{8}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}Par\IeC {\'a}metros a tener en cuenta}{9}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Generaci\IeC {\'o}n de una tabla}{10}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Empleando tablas para descifrar textos}{11}{subsection.2.2.3}
-\contentsline {chapter}{\numberline {3}El ataque del arco iris}{13}{chapter.3}
-\contentsline {section}{\numberline {3.1}Relaci\IeC {\'o}n con trabajos anteriores}{13}{section.3.1}
-\contentsline {section}{\numberline {3.2}Caracter\IeC {\'\i }sticas de las tablas del arco iris}{13}{section.3.2}
-\contentsline {subsection}{\numberline {3.2.1}Funciones de reconstrucci\IeC {\'o}n}{13}{subsection.3.2.1}
-\contentsline {subsection}{\numberline {3.2.2}Generaci\IeC {\'o}n de tablas del arco iris}{14}{subsection.3.2.2}
-\contentsline {subsection}{\numberline {3.2.3}B\IeC {\'u}squeda de colisiones mediante tablas del arco iris}{15}{subsection.3.2.3}
-\contentsline {subsection}{\numberline {3.2.4}Escalabilidad}{16}{subsection.3.2.4}
-\contentsline {section}{\numberline {3.3}Puntos distinguidos}{17}{section.3.3}
-\contentsline {section}{\numberline {3.4}Contramedidas de una funci\IeC {\'o}n \textit {hash}~para inutilizar el ataque del arco iris}{17}{section.3.4}
-\contentsline {chapter}{\numberline {4}Estudio experimental}{19}{chapter.4}
-\contentsline {section}{\numberline {4.1}Especificaciones}{20}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}Dominio de contrase\IeC {\~n}as atacado}{20}{subsection.4.1.1}
-\contentsline {subsection}{\numberline {4.1.2}Funci\IeC {\'o}n resumen atacada}{20}{subsection.4.1.2}
-\contentsline {section}{\numberline {4.2}Aproximaci\IeC {\'o}n original}{20}{section.4.2}
-\contentsline {subsection}{\numberline {4.2.1}Dimensiones de las tablas del arco iris}{20}{subsection.4.2.1}
-\contentsline {subsection}{\numberline {4.2.2}Funci\IeC {\'o}n de reconstrucci\IeC {\'o}n}{21}{subsection.4.2.2}
-\contentsline {subsection}{\numberline {4.2.3}Generaci\IeC {\'o}n y uso de tablas del arco iris}{21}{subsection.4.2.3}
-\contentsline {subsection}{\numberline {4.2.4}La estructura de datos para representar la tabla}{23}{subsection.4.2.4}
-\contentsline {subsection}{\numberline {4.2.5}Generaci\IeC {\'o}n de corpus de test}{24}{subsection.4.2.5}
-\contentsline {subsection}{\numberline {4.2.6}Primeras pruebas}{24}{subsection.4.2.6}
-\contentsline {section}{\numberline {4.3}Una nueva funci\IeC {\'o}n de reconstrucci\IeC {\'o}n}{26}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Nuevos resultados}{27}{subsection.4.3.1}
-\contentsline {section}{\numberline {4.4}Combinando funciones de reconstrucci\IeC {\'o}n}{28}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Alternancia de funciones de reconstrucci\IeC {\'o}n}{28}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}Combinando las funciones de reconstrucci\IeC {\'o}n en un patr\IeC {\'o}n}{31}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Un patr\IeC {\'o}n m\IeC {\'a}s extenso}{34}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}En busca de las tablas m\IeC {\'a}s eficientes}{37}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Nuevos tama\IeC {\~n}os}{38}{subsection.4.5.1}
-\contentsline {subsection}{\numberline {4.5.2}Colisiones internas de las nuevas tablas}{38}{subsection.4.5.2}
-\contentsline {section}{\numberline {4.6}Estudio del \IeC {\'e}xito de las nuevas tablas en la recuperaci\IeC {\'o}n de colisiones}{42}{section.4.6}
-\contentsline {section}{\numberline {4.7}Comparaci\IeC {\'o}n y discusi\IeC {\'o}n}{46}{section.4.7}
-\contentsline {chapter}{\numberline {5}Conclusiones}{51}{chapter.5}
-\contentsline {chapter}{Bibliograf\'{\i }a}{55}{chapter*.25}
+\contentsline {chapter}{\numberline {1}Introducci\'on}{1}{chapter.1}%
+\contentsline {section}{\numberline {1.1}La criptografía como piedra angular}{1}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Características y usos de las funciones resumen}{2}{section.1.2}%
+\contentsline {subsection}{\numberline {1.2.1}Definición}{2}{subsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.2.2}Propiedades}{2}{subsection.1.2.2}%
+\contentsline {subsection}{\numberline {1.2.3}Usos habituales}{3}{subsection.1.2.3}%
+\contentsline {section}{\numberline {1.3}Motivaci\'on}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.4}Objetivos}{4}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Estructura de la memoria}{5}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Aproximaciones en la búsqueda de colisiones en funciones resumen}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}La paradoja del cumpleaños}{7}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1}El algoritmo de Yuval aplicado al ataque del cumpleaños}{8}{subsection.2.1.1}%
+\contentsline {section}{\numberline {2.2}\textit {Time-memory trade-off}}{8}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Parámetros a tener en cuenta}{9}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Generación de una tabla}{10}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Empleando tablas para descifrar textos}{11}{subsection.2.2.3}%
+\contentsline {chapter}{\numberline {3}El ataque del arco iris}{13}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Relación con trabajos anteriores}{13}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Características de las tablas del arco iris}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Funciones de reconstrucción}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Generación de tablas del arco iris}{14}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Búsqueda de colisiones mediante tablas del arco iris}{15}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Escalabilidad}{16}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Puntos distinguidos}{17}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Contramedidas de una función \textit {hash}~para inutilizar el ataque del arco iris}{17}{section.3.4}%
+\contentsline {chapter}{\numberline {4}Estudio experimental}{19}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Especificaciones}{20}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Dominio de contraseñas atacado}{20}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Función resumen atacada}{20}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Aproximación original}{20}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Dimensiones de las tablas del arco iris}{20}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Función de reconstrucción}{21}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Generación y uso de tablas del arco iris}{21}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}La estructura de datos para representar la tabla}{23}{subsection.4.2.4}%
+\contentsline {subsection}{\numberline {4.2.5}Generación de corpus de test}{24}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Primeras pruebas}{24}{subsection.4.2.6}%
+\contentsline {section}{\numberline {4.3}Una nueva función de reconstrucción}{26}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Nuevos resultados}{27}{subsection.4.3.1}%
+\contentsline {section}{\numberline {4.4}Combinando funciones de reconstrucción}{28}{section.4.4}%
+\contentsline {subsection}{\numberline {4.4.1}Alternancia de funciones de reconstrucción}{28}{subsection.4.4.1}%
+\contentsline {subsection}{\numberline {4.4.2}Combinando las funciones de reconstrucción en un patrón}{31}{subsection.4.4.2}%
+\contentsline {subsection}{\numberline {4.4.3}Un patrón más extenso}{34}{subsection.4.4.3}%
+\contentsline {section}{\numberline {4.5}En busca de las tablas más eficientes}{37}{section.4.5}%
+\contentsline {subsection}{\numberline {4.5.1}Nuevos tamaños}{38}{subsection.4.5.1}%
+\contentsline {subsection}{\numberline {4.5.2}Colisiones internas de las nuevas tablas}{38}{subsection.4.5.2}%
+\contentsline {section}{\numberline {4.6}Estudio del éxito de las nuevas tablas en la recuperación de colisiones}{42}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Comparación y discusión}{46}{section.4.7}%
+\contentsline {chapter}{\numberline {5}Conclusiones}{51}{chapter.5}%
+\contentsline {chapter}{Bibliograf\'{\i }a}{55}{chapter*.25}%
