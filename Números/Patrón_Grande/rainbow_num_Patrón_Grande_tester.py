@@ -46,9 +46,6 @@ def r2(h):
     r = ''.join(r)
     return r
 
-if __name__ == '__main__':
-    start = datetime.now()
-
 def busq(filas, columnas):
     # Tomando una tabla y un set de hashes aleatorios, comprobar cuántos
     # de estos hashes la tabla selecionada es capaz de romper
@@ -57,11 +54,13 @@ def busq(filas, columnas):
         # lista de hashes a romper
         ps = pickle.load(fh)
 
-    rT = 'TABLAS_Patrón_Grande/RAINBOW_TABLE_NUM_Patrón_'+str(filas)+'x'+str(columnas)
+    rT = 'TABLAS_Patrón_Grande/RAINBOW_TABLE_NUM_Patrón_'+filas+'x'+columnas
     with open(rT, 'rb') as fh:
         # tabla del arcoiris
         rt = pickle.load(fh)
     
+    filas = int(filas)
+    columnas = int(columnas)
     # profundidad de la tabla
     pf = columnas
     # lista con los últimos hashes de la tabla
@@ -72,15 +71,15 @@ def busq(filas, columnas):
     cr = []
     for p in ps:
         aux = []
-        #print('\n\nContraseña a romper = %s' % p)
+        print('\n\nContraseña a romper = %s' % p)
         
         if ((p in hashes) and (p not in cr)):
             aux = [v for v in hashes if v == p]
 
-        #print(aux)
+        print(aux)
         if (aux):
             col += 1
-            #print('\nCONTRASEÑAS ROTAS HASTA AHORA = %d' % col)
+            print('\nCONTRASEÑAS ROTAS HASTA AHORA = %d' % col)
             cr += aux
         else:
             h = p
@@ -94,11 +93,11 @@ def busq(filas, columnas):
 
                 h = crc32(bytes(r, 'ascii'))
                 if ((h in hashes) and (h not in cr)):
-                    #print('\nContraseña rota al %d intento en el bucle 1' % (i+1))
+                    print('\nContraseña rota al %d intento en el bucle 1' % (i+1))
                     col += 1
                     aux = [v for v in hashes if v == h]
                     cr += aux
-                    #print('\nCONTRASEÑAS ROTAS HASTA AHORA = %d' % col)
+                    print('\nCONTRASEÑAS ROTAS HASTA AHORA = %d' % col)
                     break
                 
                 if (patron < 8):
@@ -260,10 +259,10 @@ def busq(filas, columnas):
                     else:
                         patron = 1
 
-    #print('\n\n\nNúmero de contraseñas encontradas = %d' % col)
+    print('\n\n\nNúmero de contraseñas encontradas = %d' % col)
     print('\nPorcentaje de éxito = %.1f%s\n' % (((col/len(ps)) * 100), chr(37)))
-    #print('Tiempo transcurrido = %s\n' % (datetime.now() - start))
-    #exit()
+    print('Tiempo transcurrido = %s\n' % (datetime.now() - start))
+    exit()
 
     # La contraseña incial es '000000'
     # De momento, las contraseñas se actualizarán secuencialmente de la siguiente manera:
@@ -313,3 +312,11 @@ def main(filas, columnas):
     # Tiempo transcurrido = Horas:minutos:segundos.microsegundos
     print('\nTiempo transcurido = %s\n' % (datetime.now() - start))
     #exit()
+
+if __name__ == "__main__":
+    start = datetime.now()
+    if len(argv) > 3:
+        busq(argv[1], argv[2])
+
+    else:
+        main(argv[1], argv[2])
